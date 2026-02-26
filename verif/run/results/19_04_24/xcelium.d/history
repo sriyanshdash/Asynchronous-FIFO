@@ -1,0 +1,5 @@
+//
+// File created by:  xrun
+// Do not modify this file
+
+s1::(18Apr2024:23:16:30):( xrun +define+DUMP_ON +define+CADENCE -incdir /data-sipc/users/smishra/workspace/ASYNC_FIFO_24/verif/tb/ -f /data-sipc/users/smishra/workspace/ASYNC_FIFO_24/rtl/sig_async_fifo_flst.f -f /data-sipc/users/smishra/workspace/ASYNC_FIFO_24/verif/tb/sig_async_fifo_tb_flst.f -svseed 1234 +nowarn_AAMNSD +access+rw -disable_sem2009 -uvm +sv +timescale+1ns/1ps " " )

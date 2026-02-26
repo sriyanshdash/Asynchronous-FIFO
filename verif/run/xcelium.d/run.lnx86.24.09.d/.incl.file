@@ -1,0 +1,7 @@
+./fifo_interface.sv
+./fifo_transaction.sv
+./fifo_driver.sv
+./fifo_monitor.sv
+./fifo_scoreboard.sv
+./fifo_env.sv
+./fifo_test.sv

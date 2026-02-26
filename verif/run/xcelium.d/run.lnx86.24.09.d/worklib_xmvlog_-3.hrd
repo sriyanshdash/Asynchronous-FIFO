@@ -1,0 +1,17 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
+-DEFINE
+DUMP_ON
+-DEFINE
+CADENCE
+-INCDIR
+/scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/verif/tb/
+-sv
+-I_INCDIR
+/tools/cadence/Products/XCELIUM2409/tools/methodology/UVM/CDNS-1.1d/sv/src
+-DEFINE
+USE_PARAMETERIZED_WRAPPER
+-I_INCDIR
+/tools/cadence/Products/XCELIUM2409/tools/methodology/UVM/CDNS-1.1d/additions/sv

@@ -1,0 +1,9 @@
+{"vcs1":{"timestamp_begin":1713507306.087464812, "rt":0.66, "ut":0.17, "st":0.11}}
+{"vcselab":{"timestamp_begin":1713507307.222278168, "rt":1.04, "ut":0.33, "st":0.24}}
+{"link":{"timestamp_begin":1713507308.643138683, "rt":0.57, "ut":0.18, "st":0.11}}
+{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1713507305.140907859}
+{"VCS_COMP_START_TIME": 1713507305.140907859}
+{"VCS_COMP_END_TIME": 1713507334.586976945}
+{"VCS_USER_OPTIONS": "-full64 +define+DUMP_ON +define+SYNOPSYS -l vcs_compile.log +vcs+lic+wait -sverilog -timescale=1ns/1ps +incdir+/data-sipc/users/smishra/workspace/ASYNC_FIFO_24/verif/tb -f /data-sipc/users/smishra/workspace/ASYNC_FIFO_24/rtl/sig_async_fifo_flst.f -f /data-sipc/users/smishra/workspace/ASYNC_FIFO_24/verif/tb/sig_async_fifo_tb_flst.f -debug_access+all"}
+{"vcs1": {"peak_mem": 2189125}}
+{"stitch_vcselab": {"peak_mem": 2189234}}

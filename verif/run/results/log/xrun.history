@@ -1,0 +1,4 @@
+#e1(25Feb2026:16:52:02): source ./xcelium.d/env.d/env.history.25Feb2026_16_52_02
+s1(25Feb2026:16:52:02):  xrun +define+DUMP_ON +define+CADENCE -incdir /scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/verif/tb/ -f /scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/rtl/sig_async_fifo_flst.f -f /scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/verif/tb/sig_async_fifo_tb_flst.f -svseed 1234 +nowarn_AAMNSD +access+rw -disable_sem2009 +sv +timescale+1ns/1ps " " 
+#e2(26Feb2026:09:49:51): source ./xcelium.d/env.d/env.history.26Feb2026_09_49_51
+s2(26Feb2026:09:49:51):  xrun +define+DUMP_ON +define+CADENCE -incdir /scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/verif/tb/ -f /scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/rtl/sig_async_fifo_flst.f -f /scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/verif/tb/sig_async_fifo_tb_flst.f -svseed 1234 +nowarn_AAMNSD +access+rw -disable_sem2009 +sv +timescale+1ns/1ps " " 

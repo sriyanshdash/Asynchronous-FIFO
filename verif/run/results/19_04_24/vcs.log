@@ -1,0 +1,34 @@
+Command: /data-sipc/users/smishra/workspace/ASYNC_FIFO_24/verif/run/results/19_04_24/./simv +ntb_random_seed=777 -l vcs.log
+Chronologic VCS simulator copyright 1991-2022
+Contains Synopsys proprietary information.
+Compiler version T-2022.06_Full64; Runtime version T-2022.06_Full64;  Apr 18 23:15 2024
+                   0Beginning write clock generation
+                   0Beginning read clock generation
+VCD+ Writer T-2022.06_Full64 Copyright (c) 1991-2022 by Synopsys Inc.
+                  20Write domain reset has been de-asserted
+                  30Data written into the FIFO=a3a3b5b5c7c7d9d9
+                  80Read domain reset has been de-asserted
+                  90Data written into the FIFO=a3a3b5b5c7c7d9d9
+                 150Data written into the FIFO=a3a3b5b5c7c7d9d9
+                 210Data written into the FIFO=a3a3b5b5c7c7d9d9
+                 270Data written into the FIFO=a3a3b5b5c7c7d9d9
+                 330Data written into the FIFO=a3a3b5b5c7c7d9d9
+                 350Data written into the FIFO=a3a3b5b5c7c7d9d9
+                 410Data written into the FIFO=a3a3b5b5c7c7d9d9
+                 470Data written into the FIFO=a3a3b5b5c7c7d9d9
+                 530Data written into the FIFO=a3a3b5b5c7c7d9d9
+                 590Data written into the FIFO=a3a3b5b5c7c7d9d9
+                 650Data written into the FIFO=a3a3b5b5c7c7d9d9
+                 670Data written into the FIFO=a3a3b5b5c7c7d9d9
+                 730Data written into the FIFO=a3a3b5b5c7c7d9d9
+                 790Data written into the FIFO=a3a3b5b5c7c7d9d9
+                 850Data written into the FIFO=a3a3b5b5c7c7d9d9
+                 910Data written into the FIFO=a3a3b5b5c7c7d9d9
+                 970Data written into the FIFO=a3a3b5b5c7c7d9d9
+                 990Data written into the FIFO=a3a3b5b5c7c7d9d9
+$finish called from file "/data-sipc/users/smishra/workspace/ASYNC_FIFO_24/verif/tb/sig_async_fifo_tb_top.sv", line 94.
+$finish at simulation time              1000000
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 1000000 ps
+CPU Time:      0.440 seconds;       Data structure size:   0.0Mb
+Thu Apr 18 23:15:35 2024

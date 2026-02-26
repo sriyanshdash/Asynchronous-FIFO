@@ -1,0 +1,6 @@
+/data-sipc/users/smishra/workspace/ASYNC_FIFO_24/rtl/fifo_memory.sv
+/data-sipc/users/smishra/workspace/ASYNC_FIFO_24/rtl/fifo_top.sv
+/data-sipc/users/smishra/workspace/ASYNC_FIFO_24/rtl/rdptr_handler.sv
+/data-sipc/users/smishra/workspace/ASYNC_FIFO_24/rtl/synchronizer.sv
+/data-sipc/users/smishra/workspace/ASYNC_FIFO_24/rtl/wrptr_handler.sv
+/data-sipc/users/smishra/workspace/ASYNC_FIFO_24/verif/tb/sig_async_fifo_tb_top.sv

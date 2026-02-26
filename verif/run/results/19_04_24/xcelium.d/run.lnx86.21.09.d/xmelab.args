@@ -1,0 +1,28 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
++timescale+1ns/1ps
++define+DUMP_ON
++define+CADENCE
++nowarn_AAMNSD
++access+rw
++sv
+-loadpli
+/tools/cadence/XCELIUM2109/tools/methodology/UVM/CDNS-1.1d/additions/sv/lib/libuvmpli.so:uvm_pli_boot
+-NOWARN
+_AAMNSD
+-ACCESS
++rw
+-DISABLE_SEM2009
+-MESSAGES
+-XLMODE
+./xcelium.d/run.lnx86.21.09.d
+-RUNMODE
+-CDSLIB
+./xcelium.d/run.lnx86.21.09.d/cds.lib
+-HDLVAR
+./xcelium.d/run.lnx86.21.09.d/hdl.var
+-WORK
+worklib
+-HASXLMODE

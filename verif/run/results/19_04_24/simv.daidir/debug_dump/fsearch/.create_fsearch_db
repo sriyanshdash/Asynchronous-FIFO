@@ -1,0 +1,9 @@
+#!/bin/sh -h 
+PYTHONHOME=/tools/SYNOPSYS/Products/vcs/T-2022.06/etc/search/pyh
+export PYTHONHOME
+PYTHONPATH=/tools/SYNOPSYS/Products/vcs/T-2022.06/linux64/lib/pylib27
+export PYTHONPATH
+LD_LIBRARY_PATH=/tools/SYNOPSYS/Products/vcs/T-2022.06/linux64/lib:/tools/SYNOPSYS/Products/vcs/T-2022.06/linux64/lib/pylib27
+export LD_LIBRARY_PATH
+/tools/SYNOPSYS/Products/vcs/T-2022.06/linux64/bin/vcsfind_create_index.exe  -z  "/data-sipc/users/smishra/workspace/ASYNC_FIFO_24/verif/run/results/19_04_24/simv.daidir/debug_dump/fsearch/./idents_eyHb3R.xml.gz" -o "/data-sipc/users/smishra/workspace/ASYNC_FIFO_24/verif/run/results/19_04_24/simv.daidir/debug_dump/fsearch/fsearch.db_tmp"
+\mv "/data-sipc/users/smishra/workspace/ASYNC_FIFO_24/verif/run/results/19_04_24/simv.daidir/debug_dump/fsearch/fsearch.db_tmp" "/data-sipc/users/smishra/workspace/ASYNC_FIFO_24/verif/run/results/19_04_24/simv.daidir/debug_dump/fsearch/fsearch.db"

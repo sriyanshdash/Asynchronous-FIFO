@@ -1,0 +1,13 @@
+1772004322 /scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/verif/tb/fifo_env.sv
+1772004322 /scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/verif/tb/fifo_scoreboard.sv
+1771917536 /scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/rtl/wrptr_handler.sv
+1772004322 /scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/verif/tb/fifo_driver.sv
+1772004322 /scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/verif/tb/fifo_transaction.sv
+1771917550 /scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/rtl/rdptr_handler.sv
+1772004322 /scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/verif/tb/fifo_interface.sv
+1771917546 /scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/rtl/fifo_memory.sv
+1771917835 /scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/rtl/fifo_top.sv
+1772004322 /scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/verif/tb/fifo_monitor.sv
+1772009415 /scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/verif/tb/tb_top.sv
+1772004322 /scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/verif/tb/fifo_test.sv
+1771916468 /scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/rtl/synchronizer.sv

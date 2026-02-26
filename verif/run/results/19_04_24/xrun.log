@@ -1,0 +1,110 @@
+xrun: 21.09-s008: (c) Copyright 1995-2022 Cadence Design Systems, Inc.
+TOOL:	xrun	21.09-s008: Started on Apr 18, 2024 at 23:16:25 PDT
+xrun
+	+define+DUMP_ON
+	+define+CADENCE
+	-incdir /data-sipc/users/smishra/workspace/ASYNC_FIFO_24/verif/tb/
+	-f /data-sipc/users/smishra/workspace/ASYNC_FIFO_24/rtl/sig_async_fifo_flst.f
+		/data-sipc/users/smishra/workspace/ASYNC_FIFO_24/rtl/synchronizer.sv
+		/data-sipc/users/smishra/workspace/ASYNC_FIFO_24/rtl/fifo_memory.sv
+		/data-sipc/users/smishra/workspace/ASYNC_FIFO_24/rtl/wrptr_handler.sv
+		/data-sipc/users/smishra/workspace/ASYNC_FIFO_24/rtl/rdptr_handler.sv
+		/data-sipc/users/smishra/workspace/ASYNC_FIFO_24/rtl/fifo_top.sv
+	-f /data-sipc/users/smishra/workspace/ASYNC_FIFO_24/verif/tb/sig_async_fifo_tb_flst.f
+		/data-sipc/users/smishra/workspace/ASYNC_FIFO_24/verif/tb/sig_async_fifo_tb_top.sv
+	-svseed 1234
+	+nowarn_AAMNSD
+	+access+rw
+	-disable_sem2009
+	-uvm
+	+sv
+	+timescale+1ns/1ps
+
+   User defined plus("+") options:
+	+timescale+1ns/1ps
+
+Compiling UVM packages (uvm_pkg.sv cdns_uvm_pkg.sv) using uvmhome location /tools/cadence/XCELIUM2109/tools/methodology/UVM/CDNS-1.1d
+file: /data-sipc/users/smishra/workspace/ASYNC_FIFO_24/rtl/synchronizer.sv
+	module worklib.synchronizer:sv
+		errors: 0, warnings: 0
+file: /data-sipc/users/smishra/workspace/ASYNC_FIFO_24/rtl/fifo_memory.sv
+	module worklib.fifo_mem:sv
+		errors: 0, warnings: 0
+file: /data-sipc/users/smishra/workspace/ASYNC_FIFO_24/rtl/wrptr_handler.sv
+	module worklib.wptr_handler:sv
+		errors: 0, warnings: 0
+file: /data-sipc/users/smishra/workspace/ASYNC_FIFO_24/rtl/rdptr_handler.sv
+	module worklib.rptr_handler:sv
+		errors: 0, warnings: 0
+file: /data-sipc/users/smishra/workspace/ASYNC_FIFO_24/rtl/fifo_top.sv
+	module worklib.asynchronous_fifo:sv
+		errors: 0, warnings: 0
+file: /data-sipc/users/smishra/workspace/ASYNC_FIFO_24/verif/tb/sig_async_fifo_tb_top.sv
+	module worklib.sig_async_fifo_tb_top:sv
+		errors: 0, warnings: 0
+xmvlog: *W,SPDUSD: Include directory /data-sipc/users/smishra/workspace/ASYNC_FIFO_24/verif/tb/ given but not used.
+	Total errors/warnings found outside modules and primitives:
+		errors: 0, warnings: 1
+		Caching library 'worklib' ....... Done
+	Elaborating the design hierarchy:
+	Top level design units:
+		sig_async_fifo_tb_top
+	Building instance overlay tables: .................... Done
+	Generating native compiled code:
+		worklib.fifo_mem:sv <0x34c2b7c2>
+			streams:   3, words:  1211
+		worklib.rptr_handler:sv <0x1dd3c008>
+			streams:   8, words:  1839
+		worklib.wptr_handler:sv <0x624c6452>
+			streams:   8, words:  1867
+		worklib.synchronizer:sv <0x31b60ae7>
+			streams:   3, words:   700
+		worklib.asynchronous_fifo:sv <0x230995ad>
+			streams:  17, words:  2788
+		worklib.sig_async_fifo_tb_top:sv <0x58cba0b1>
+			streams:  18, words:  8762
+	Building instance specific data structures.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		              Instances  Unique
+		Modules:              7       6
+		Registers:           37      35
+		Scalar wires:        18       -
+		Vectored wires:      30       -
+		Always blocks:        9       8
+		Initial blocks:       6       6
+		Cont. assignments:    7       7
+		Pseudo assignments:  27      27
+	Writing initial simulation snapshot: worklib.sig_async_fifo_tb_top:sv
+Loading snapshot worklib.sig_async_fifo_tb_top:sv .................... Done
+SVSEED set from command line: 1234
+xcelium> source /tools/cadence/XCELIUM2109/tools/xcelium/files/xmsimrc
+xcelium> source /tools/cadence/XCELIUM2109/tools/methodology/UVM/CDNS-1.1d/additions/sv/files/tcl/uvm_sim.tcl
+xcelium> run
+                   0Beginning write clock generation
+                   0Beginning read clock generation
+                  20Write domain reset has been de-asserted
+                  30Data written into the FIFO=a3a3b5b5c7c7d9d9
+                  80Read domain reset has been de-asserted
+                  90Data written into the FIFO=a3a3b5b5c7c7d9d9
+                 150Data written into the FIFO=a3a3b5b5c7c7d9d9
+                 210Data written into the FIFO=a3a3b5b5c7c7d9d9
+                 270Data written into the FIFO=a3a3b5b5c7c7d9d9
+                 330Data written into the FIFO=a3a3b5b5c7c7d9d9
+                 350Data written into the FIFO=a3a3b5b5c7c7d9d9
+                 410Data written into the FIFO=a3a3b5b5c7c7d9d9
+                 470Data written into the FIFO=a3a3b5b5c7c7d9d9
+                 530Data written into the FIFO=a3a3b5b5c7c7d9d9
+                 590Data written into the FIFO=a3a3b5b5c7c7d9d9
+                 650Data written into the FIFO=a3a3b5b5c7c7d9d9
+                 670Data written into the FIFO=a3a3b5b5c7c7d9d9
+                 730Data written into the FIFO=a3a3b5b5c7c7d9d9
+                 790Data written into the FIFO=a3a3b5b5c7c7d9d9
+                 850Data written into the FIFO=a3a3b5b5c7c7d9d9
+                 910Data written into the FIFO=a3a3b5b5c7c7d9d9
+                 970Data written into the FIFO=a3a3b5b5c7c7d9d9
+                 990Data written into the FIFO=a3a3b5b5c7c7d9d9
+Simulation complete via $finish(1) at time 1 US + 0
+/data-sipc/users/smishra/workspace/ASYNC_FIFO_24/verif/tb/sig_async_fifo_tb_top.sv:94     initial #1000 $finish;
+xcelium> exit
+TOOL:	xrun	21.09-s008: Exiting on Apr 18, 2024 at 23:20:12 PDT  (total: 00:03:47)

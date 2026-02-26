@@ -1,0 +1,192 @@
+xrun: 24.09-s001: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
+TOOL:	xrun	24.09-s001: Started on Feb 26, 2026 at 09:49:48 IST
+xrun
+	+define+DUMP_ON
+	+define+CADENCE
+	-incdir /scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/verif/tb/
+	-f /scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/rtl/sig_async_fifo_flst.f
+		/scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/rtl/synchronizer.sv
+		/scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/rtl/fifo_memory.sv
+		/scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/rtl/wrptr_handler.sv
+		/scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/rtl/rdptr_handler.sv
+		/scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/rtl/fifo_top.sv
+	-f /scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/verif/tb/sig_async_fifo_tb_flst.f
+		/scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/verif/tb/fifo_interface.sv
+		/scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/verif/tb/fifo_transaction.sv
+		/scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/verif/tb/fifo_driver.sv
+		/scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/verif/tb/fifo_monitor.sv
+		/scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/verif/tb/fifo_scoreboard.sv
+		/scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/verif/tb/fifo_env.sv
+		/scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/verif/tb/fifo_test.sv
+		/scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/verif/tb/tb_top.sv
+	-svseed 1234
+	+nowarn_AAMNSD
+	+access+rw
+	-disable_sem2009
+	+sv
+	+timescale+1ns/1ps
+
+   User defined plus("+") options:
+	+timescale+1ns/1ps
+
+Loading snapshot worklib.tb_top:sv .................... Done
+SVSEED set from command line: 1234
+xcelium> source /tools/cadence/Products/XCELIUM2409/tools/xcelium/files/xmsimrc
+xcelium> run
+[TB_TOP] Reset deasserted at 56000  (wrst_n=1, rrst_n=1)
+
+[TEST] ============================================
+[TEST]   Async FIFO – Basic Functional Test START  
+[TEST]   WIDTH=64  NUM_TXNS=20
+[TEST] ============================================
+[ENV] Building and starting environment at 66000
+[ENV] All components running.
+[TEST] Phase 1: Generating 20 WRITE transactions...
+[TEST] All WRITE transactions queued.
+[TEST] Phase 2: Generating 20 READ transactions...
+[TEST] All READ transactions queued.
+[TEST] Waiting for transactions to drain (10000 ns)...
+[DRIVER] Starting at 66000
+[MONITOR] Starting at 66000
+[SCB] Starting at 66000
+[DRIVER-WR] @76000  wr_en=1  data=0xdecc51cb87e7119a
+[85000] [MON-WR  ] type=FIFO_WRITE  wr_en=1  rd_en=0  data=0xdecc51cb87e7119a | full=0  empty=1
+[SCB-WR] @85000  PUSH  data=0xdecc51cb87e7119a   ref_q depth=1
+[DRIVER-WR] @96000  wr_en=1  data=0x0cec6b0118bcae59
+[105000] [MON-WR  ] type=FIFO_WRITE  wr_en=1  rd_en=0  data=0x0cec6b0118bcae59 | full=0  empty=1
+[SCB-WR] @105000  PUSH  data=0x0cec6b0118bcae59   ref_q depth=2
+[DRIVER-WR] @116000  wr_en=1  data=0xc04016396cd9b638
+[125000] [MON-WR  ] type=FIFO_WRITE  wr_en=1  rd_en=0  data=0xc04016396cd9b638 | full=0  empty=0
+[SCB-WR] @125000  PUSH  data=0xc04016396cd9b638   ref_q depth=3
+[DRIVER-WR] @136000  wr_en=1  data=0xdcb8f479ff7785a4
+[145000] [MON-WR  ] type=FIFO_WRITE  wr_en=1  rd_en=0  data=0xdcb8f479ff7785a4 | full=0  empty=0
+[SCB-WR] @145000  PUSH  data=0xdcb8f479ff7785a4   ref_q depth=4
+[DRIVER-RD] @151000  rd_en=1
+[DRIVER-WR] @156000  wr_en=1  data=0x6054f533d0b1a6f5
+[165000] [MON-WR  ] type=FIFO_WRITE  wr_en=1  rd_en=0  data=0x6054f533d0b1a6f5 | full=0  empty=0
+[SCB-WR] @165000  PUSH  data=0x6054f533d0b1a6f5   ref_q depth=5
+[176000] [MON-RD  ] type=FIFO_READ  wr_en=0  rd_en=1  data=0x0000000000000000 | full=0  empty=0
+[SCB-RD] @176000  PASS  : data_out=0xdecc51cb87e7119a  ==  exp=0xdecc51cb87e7119a
+[DRIVER-WR] @176000  wr_en=1  data=0xf869d4b545fad840
+[DRIVER-RD] @177000  rd_en=1
+[185000] [MON-WR  ] type=FIFO_WRITE  wr_en=1  rd_en=0  data=0xf869d4b545fad840 | full=0  empty=0
+[SCB-WR] @185000  PUSH  data=0xf869d4b545fad840   ref_q depth=5
+[DRIVER-WR] @196000  wr_en=1  data=0x46fef2a400632fcd
+[202000] [MON-RD  ] type=FIFO_READ  wr_en=0  rd_en=1  data=0x0000000000000000 | full=0  empty=0
+[SCB-RD] @202000  PASS  : data_out=0x0cec6b0118bcae59  ==  exp=0x0cec6b0118bcae59
+[DRIVER-RD] @203000  rd_en=1
+[205000] [MON-WR  ] type=FIFO_WRITE  wr_en=1  rd_en=0  data=0x46fef2a400632fcd | full=0  empty=0
+[SCB-WR] @205000  PUSH  data=0x46fef2a400632fcd   ref_q depth=5
+[DRIVER-WR] @216000  wr_en=1  data=0xe9032a1f803d230b
+[225000] [MON-WR  ] type=FIFO_WRITE  wr_en=1  rd_en=0  data=0xe9032a1f803d230b | full=0  empty=0
+[SCB-WR] @225000  PUSH  data=0xe9032a1f803d230b   ref_q depth=6
+[228000] [MON-RD  ] type=FIFO_READ  wr_en=0  rd_en=1  data=0x0000000000000000 | full=0  empty=0
+[SCB-RD] @228000  PASS  : data_out=0xc04016396cd9b638  ==  exp=0xc04016396cd9b638
+[DRIVER-RD] @229000  rd_en=1
+[DRIVER-WR] @236000  wr_en=1  data=0x7976c3b3faebcc59
+[245000] [MON-WR  ] type=FIFO_WRITE  wr_en=1  rd_en=0  data=0x7976c3b3faebcc59 | full=0  empty=0
+[SCB-WR] @245000  PUSH  data=0x7976c3b3faebcc59   ref_q depth=6
+[254000] [MON-RD  ] type=FIFO_READ  wr_en=0  rd_en=1  data=0x0000000000000000 | full=0  empty=0
+[SCB-RD] @254000  PASS  : data_out=0xdcb8f479ff7785a4  ==  exp=0xdcb8f479ff7785a4
+[DRIVER-RD] @255000  rd_en=1
+[DRIVER-WR] @256000  wr_en=1  data=0x2ca6c988be6e78d4
+[265000] [MON-WR  ] type=FIFO_WRITE  wr_en=1  rd_en=0  data=0x2ca6c988be6e78d4 | full=0  empty=0
+[SCB-WR] @265000  PUSH  data=0x2ca6c988be6e78d4   ref_q depth=6
+[DRIVER-WR] @276000  wr_en=1  data=0x57db278340549498
+[280000] [MON-RD  ] type=FIFO_READ  wr_en=0  rd_en=1  data=0x0000000000000000 | full=0  empty=0
+[SCB-RD] @280000  PASS  : data_out=0x6054f533d0b1a6f5  ==  exp=0x6054f533d0b1a6f5
+[DRIVER-RD] @281000  rd_en=1
+[285000] [MON-WR  ] type=FIFO_WRITE  wr_en=1  rd_en=0  data=0x57db278340549498 | full=0  empty=0
+[SCB-WR] @285000  PUSH  data=0x57db278340549498   ref_q depth=6
+[DRIVER-WR] @296000  wr_en=1  data=0xdf62e0a15b23d6f0
+[305000] [MON-WR  ] type=FIFO_WRITE  wr_en=1  rd_en=0  data=0xdf62e0a15b23d6f0 | full=0  empty=0
+[SCB-WR] @305000  PUSH  data=0xdf62e0a15b23d6f0   ref_q depth=7
+[306000] [MON-RD  ] type=FIFO_READ  wr_en=0  rd_en=1  data=0x0000000000000000 | full=0  empty=0
+[SCB-RD] @306000  PASS  : data_out=0xf869d4b545fad840  ==  exp=0xf869d4b545fad840
+[DRIVER-RD] @307000  rd_en=1
+[DRIVER-WR] @316000  wr_en=1  data=0x6053c40312c92cc6
+[325000] [MON-WR  ] type=FIFO_WRITE  wr_en=1  rd_en=0  data=0x6053c40312c92cc6 | full=0  empty=0
+[SCB-WR] @325000  PUSH  data=0x6053c40312c92cc6   ref_q depth=7
+[332000] [MON-RD  ] type=FIFO_READ  wr_en=0  rd_en=1  data=0x0000000000000000 | full=0  empty=0
+[SCB-RD] @332000  PASS  : data_out=0x46fef2a400632fcd  ==  exp=0x46fef2a400632fcd
+[DRIVER-RD] @333000  rd_en=1
+[DRIVER-WR] @336000  wr_en=1  data=0x8a8fed5dc1a45253
+[345000] [MON-WR  ] type=FIFO_WRITE  wr_en=1  rd_en=0  data=0x8a8fed5dc1a45253 | full=0  empty=0
+[SCB-WR] @345000  PUSH  data=0x8a8fed5dc1a45253   ref_q depth=7
+[DRIVER-WR] @356000  wr_en=1  data=0x751d2f9640cd5c06
+[358000] [MON-RD  ] type=FIFO_READ  wr_en=0  rd_en=1  data=0x0000000000000000 | full=0  empty=0
+[SCB-RD] @358000  PASS  : data_out=0xe9032a1f803d230b  ==  exp=0xe9032a1f803d230b
+[DRIVER-RD] @359000  rd_en=1
+[365000] [MON-WR  ] type=FIFO_WRITE  wr_en=1  rd_en=0  data=0x751d2f9640cd5c06 | full=0  empty=0
+[SCB-WR] @365000  PUSH  data=0x751d2f9640cd5c06   ref_q depth=7
+[DRIVER-WR] @376000  wr_en=1  data=0x8fd6ed4376901eaa
+[384000] [MON-RD  ] type=FIFO_READ  wr_en=0  rd_en=1  data=0x0000000000000000 | full=0  empty=0
+[SCB-RD] @384000  PASS  : data_out=0x7976c3b3faebcc59  ==  exp=0x7976c3b3faebcc59
+[DRIVER-RD] @385000  rd_en=1
+[385000] [MON-WR  ] type=FIFO_WRITE  wr_en=1  rd_en=0  data=0x8fd6ed4376901eaa | full=0  empty=0
+[SCB-WR] @385000  PUSH  data=0x8fd6ed4376901eaa   ref_q depth=7
+[410000] [MON-RD  ] type=FIFO_READ  wr_en=0  rd_en=1  data=0x0000000000000000 | full=0  empty=0
+[SCB-RD] @410000  PASS  : data_out=0x2ca6c988be6e78d4  ==  exp=0x2ca6c988be6e78d4
+[DRIVER-RD] @411000  rd_en=1
+[DRIVER-WR] @416000  wr_en=1  data=0x821ecd412c6542f4
+[425000] [MON-WR  ] type=FIFO_WRITE  wr_en=1  rd_en=0  data=0x821ecd412c6542f4 | full=0  empty=0
+[SCB-WR] @425000  PUSH  data=0x821ecd412c6542f4   ref_q depth=7
+[436000] [MON-RD  ] type=FIFO_READ  wr_en=0  rd_en=1  data=0x0000000000000000 | full=0  empty=0
+[SCB-RD] @436000  PASS  : data_out=0x57db278340549498  ==  exp=0x57db278340549498
+[DRIVER-WR] @436000  wr_en=1  data=0x3484ad6b3e275c81
+[DRIVER-RD] @437000  rd_en=1
+[445000] [MON-WR  ] type=FIFO_WRITE  wr_en=1  rd_en=0  data=0x3484ad6b3e275c81 | full=0  empty=0
+[SCB-WR] @445000  PUSH  data=0x3484ad6b3e275c81   ref_q depth=7
+[DRIVER-WR] @456000  wr_en=1  data=0x68254e4ff6751298
+[462000] [MON-RD  ] type=FIFO_READ  wr_en=0  rd_en=1  data=0x0000000000000000 | full=0  empty=0
+[SCB-RD] @462000  PASS  : data_out=0xdf62e0a15b23d6f0  ==  exp=0xdf62e0a15b23d6f0
+[DRIVER-RD] @463000  rd_en=1
+[465000] [MON-WR  ] type=FIFO_WRITE  wr_en=1  rd_en=0  data=0x68254e4ff6751298 | full=0  empty=0
+[SCB-WR] @465000  PUSH  data=0x68254e4ff6751298   ref_q depth=7
+[488000] [MON-RD  ] type=FIFO_READ  wr_en=0  rd_en=1  data=0x0000000000000000 | full=0  empty=0
+[SCB-RD] @488000  PASS  : data_out=0x6053c40312c92cc6  ==  exp=0x6053c40312c92cc6
+[DRIVER-RD] @489000  rd_en=1
+[DRIVER-WR] @496000  wr_en=1  data=0xe947aa3f969a8749
+[505000] [MON-WR  ] type=FIFO_WRITE  wr_en=1  rd_en=0  data=0xe947aa3f969a8749 | full=0  empty=0
+[SCB-WR] @505000  PUSH  data=0xe947aa3f969a8749   ref_q depth=7
+[514000] [MON-RD  ] type=FIFO_READ  wr_en=0  rd_en=1  data=0x0000000000000000 | full=0  empty=0
+[SCB-RD] @514000  PASS  : data_out=0x8a8fed5dc1a45253  ==  exp=0x8a8fed5dc1a45253
+[DRIVER-RD] @515000  rd_en=1
+[540000] [MON-RD  ] type=FIFO_READ  wr_en=0  rd_en=1  data=0x0000000000000000 | full=0  empty=0
+[SCB-RD] @540000  PASS  : data_out=0x751d2f9640cd5c06  ==  exp=0x751d2f9640cd5c06
+[DRIVER-RD] @541000  rd_en=1
+[566000] [MON-RD  ] type=FIFO_READ  wr_en=0  rd_en=1  data=0x0000000000000000 | full=0  empty=0
+[SCB-RD] @566000  PASS  : data_out=0x8fd6ed4376901eaa  ==  exp=0x8fd6ed4376901eaa
+[DRIVER-RD] @567000  rd_en=1
+[592000] [MON-RD  ] type=FIFO_READ  wr_en=0  rd_en=1  data=0x0000000000000000 | full=0  empty=0
+[SCB-RD] @592000  PASS  : data_out=0x821ecd412c6542f4  ==  exp=0x821ecd412c6542f4
+[DRIVER-RD] @593000  rd_en=1
+[618000] [MON-RD  ] type=FIFO_READ  wr_en=0  rd_en=1  data=0x0000000000000000 | full=0  empty=0
+[SCB-RD] @618000  PASS  : data_out=0x3484ad6b3e275c81  ==  exp=0x3484ad6b3e275c81
+[DRIVER-RD] @619000  rd_en=1
+[644000] [MON-RD  ] type=FIFO_READ  wr_en=0  rd_en=1  data=0x0000000000000000 | full=0  empty=0
+[SCB-RD] @644000  PASS  : data_out=0x68254e4ff6751298  ==  exp=0x68254e4ff6751298
+[DRIVER-RD] @645000  rd_en=1
+[670000] [MON-RD  ] type=FIFO_READ  wr_en=0  rd_en=1  data=0x0000000000000000 | full=0  empty=1
+[SCB-RD] @670000  PASS  : data_out=0xe947aa3f969a8749  ==  exp=0xe947aa3f969a8749
+
+==============================================================
+             ASYNC FIFO SCOREBOARD – FINAL REPORT             
+==============================================================
+  Write transactions seen  : 20
+  Read  transactions seen  : 20
+  Ref-queue residual       : 0  (expect 0 if wr==rd count)
+  Checks PASSED            : 20
+  Checks FAILED            : 0
+--------------------------------------------------------------
+  RESULT  >>  ** SIMULATION PASSED **
+==============================================================
+
+[TEST] ============================================
+[TEST]   Async FIFO – Basic Functional Test END    
+[TEST] ============================================
+
+Simulation complete via $finish(1) at time 10066 NS + 0
+/scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/verif/tb/fifo_test.sv:104         $finish;
+xcelium> exit
+TOOL:	xrun	24.09-s001: Exiting on Feb 26, 2026 at 09:50:03 IST  (total: 00:00:15)

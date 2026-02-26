@@ -1,0 +1,217 @@
+0 
+40
++define+DUMP_ON
++define+SYNOPSYS
++incdir+/data-sipc/users/smishra/workspace/ASYNC_FIFO_24/verif/tb
++itf+/tools/SYNOPSYS/Products/vcs/T-2022.06/linux64/lib/vcsdp_lite.tab
++vcs+lic+wait
++vcsd1
++vpi
+-Mamsrun=
+-Masflags=
+-Mcc=gcc
+-Mcfl= -pipe -fPIC -O -I/tools/SYNOPSYS/Products/vcs/T-2022.06/include
+-Mcplusplus=g++
+-Mcrt0=
+-Mcrtn=
+-Mcsrc=
+-Mexternalobj=
+-Mldflags= -rdynamic
+-Mobjects= /tools/SYNOPSYS/Products/vcs/T-2022.06/linux64/lib/libvirsim.so /tools/SYNOPSYS/Products/vcs/T-2022.06/linux64/lib/liberrorinf.so /tools/SYNOPSYS/Products/vcs/T-2022.06/linux64/lib/libsnpsmalloc.so /tools/SYNOPSYS/Products/vcs/T-2022.06/linux64/lib/libvfs.so
+-Mout=simv
+-Msaverestoreobj=/tools/SYNOPSYS/Products/vcs/T-2022.06/linux64/lib/vcs_save_restore_new.o
+-Msyslibs=/tools/SYNOPSYS/Products/verdi/U-2023.03/share/PLI/VCS/LINUX64/pli.a -ldl
+-Mvcsaceobjs=
+-Mxcflags= -pipe -fPIC -I/tools/SYNOPSYS/Products/vcs/T-2022.06/include
+-Mxllcflags=
+-P
+-debug_access+all
+-f /data-sipc/users/smishra/workspace/ASYNC_FIFO_24/rtl/sig_async_fifo_flst.f
+-f /data-sipc/users/smishra/workspace/ASYNC_FIFO_24/verif/tb/sig_async_fifo_tb_flst.f
+-fsdb
+-full64
+-gen_obj
+-l
+-picarchive
+-sverilog
+-timescale=1ns/1ps
+/tools/SYNOPSYS/Products/vcs/T-2022.06/linux64/bin/vcs1
+vcs_compile.log
+/tools/SYNOPSYS/Products/verdi/U-2023.03/share/PLI/VCS/LINUX64/verdi.tab
+/data-sipc/users/smishra/workspace/ASYNC_FIFO_24/rtl/sig_async_fifo_flst.f
+/data-sipc/users/smishra/workspace/ASYNC_FIFO_24/verif/tb/sig_async_fifo_tb_flst.f
+154
+XMODIFIERS=@im=ibus
+XILINX_HOME=/tools/xilinx/install
+XDG_SESSION_ID=1287
+XDG_RUNTIME_DIR=/run/user/1110
+XCELIUM_HOME=/tools/cadence/XCELIUM2109/tools.lnx86
+XA_VERSION=U-2023.03-SP2-2
+XA_HOME=/tools/SYNOPSYS/Products/primesim/xa/U-2023.03-SP2-2
+VMR_MODE_FLAG=64
+VIVADO_HOME=/tools/xilinx/install/Vivado/2022.2
+VITIS_HOME=/tools/xilinx/install/Vitis/2022.2
+VIPHOME=/tools/cadence/vipcat_11.30.064-06_Aug_2019_08_15_01
+VERPLEX_SHARE=/tools/cadence/CONFRML211
+VERPLEX_HOME=/tools/cadence/CONFRML211
+VERDI_VERSION=U-2023.03
+VERDI_HOME=/tools/SYNOPSYS/Products/verdi/U-2023.03
+VENDOR=unknown
+VC_STATIC_HOME=/tools1/synopsys/vc_static/R-2020.12
+VCS_VERSION=T-2022.06
+VCS_PATHMAP_PRELOAD_DONE=1
+VCS_MX_HOME_INTERNAL=1
+VCS_MODE_FLAG=64
+VCS_LOG_FILE=vcs_compile.log
+VCS_HOME=/tools/SYNOPSYS/Products/vcs/T-2022.06
+VCS_EXEC_DONE=1
+VCS_DEPTH=0
+VCS_ARG_ADDED_FOR_TMP=1
+VCS_ARCH=linux64
+UVM_VERSION=1.1d
+UVM_HOME=/tools/uvm/uvm-1.1d
+UNAME=/bin/uname
+UFE_SPYGLASS_HOME=/tools/SYNOPSYS/Products/vcs/ufe_optional_spyglass-vcs/T-2022.06-SP2-7/SPYGLASS_HOME
+TOPOLOGY_GENERATOR_HOME=/tools/sw-tools/topology-generator
+TOOL_HOME=/tools/SYNOPSYS/Products/vcs/T-2022.06/linux64
+TESSENT_HOME=/tools/mentor/TESSENT
+TARG_TITLE_BAR_PAREN= 
+S_COLORS=auto
+SW_TOOLS_HOME=/tools/sw-tools
+SSVHOME=/tools/cadence/SSV221
+SSH_TTY=/dev/pts/219
+SSH_CONNECTION=10.1.2.24 55996 10.1.2.17 22
+SSH_CLIENT=10.1.2.24 55996 22
+SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+SPYGLASS_HOME=/tools/SYNOPSYS/Products/vcs/spyglass/T-2022.06-SP2-7/SPYGLASS_HOME
+SNPS_VCS_CLANG_PATH=/tools/SYNOPSYS/Products/vcs/T-2022.06/linux64/clang
+SNPS_INTERNAL_VCS_LINUX_OS=linux
+SNPS_HOME=/tools/SYNOPSYS
+SNPSLMD_VERSION=2022.12
+SNPSLMD_PATH=/tools/SYNOPSYS/Products/scl/2022.12/linux64/bin
+SIG_VIP_NATIVE_VERSION=latest
+SIG_VIP_NATIVE_HOME=/tools/SIPC/sig_native_vip_latest
+SIG_VIP_HOME=/tools/SIPC
+SIG_VIP_AXI_VERSION=latest
+SIG_VIP_AXI_HOME=/tools/SIPC/sig_axi_vip_latest
+SIG_VIP_AXISTREAM_VERSION=latest
+SIG_VIP_AXISTREAM_HOME=/tools/SIPC/sig_axistream_vip_latest
+SIG_PCIE_WORK=/data/users/smishra/workspace/SIPC_PCIe/
+SIG_PCIE_HOME=/data/users/smishra/workspace/SIPC_PCIe//sig_pcie
+SIG_PCIE_B2B_TOP=/data/users/smishra/workspace/SIPC_PCIe//sig_pcie/verif/B2B/tb
+SIG_PCIE_AVERY_TOP=/data/users/smishra/workspace/SIPC_PCIe//sig_pcie/verif/AVERY/tb
+SIG_FIFO_HOME=/data-sipc/users/smishra/workspace/ASYNC_FIFO_24
+SELINUX_USE_CURRENT_RANGE=
+SELINUX_ROLE_REQUESTED=
+SELINUX_LEVEL_REQUESTED=
+SCRNAME=vcs
+SCRIPT_NAME=vcs
+REMOTEHOST=10.1.2.24
+RED_HOME=/tools/mentor/VPS
+QUESTA_HOME=/tools/mentor/questa_ultra_2021_3_1/questasim
+QRC_HOME=/tools1/cadence/installs/QUANTUS211
+PVSHOME=/tools1/cadence/installs/PVS201/
+PRIME_VERSION=U-2023.03-SP2-2
+PRIME_HOME=/tools/SYNOPSYS/Products/primesim/U-2023.03-SP2-2
+PRIMEWAVE_VERSION=U-2023.03-SP2-2
+PRIMEWAVE_HOME=/tools/SYNOPSYS/Products/primewave/U-2023.03-SP2-2
+PRIMEWAVER_VERSION=U-2023.03-SP2-2
+PRIMEWAVER_HOME=/tools/SYNOPSYS/Products/primewavereliability/U-2023.03-SP2-2
+PACMAN_PCIE_HOME=/tools/sw-tools/pacman_pcie
+PACMAN_HOME=/tools/sw-tools/pacman
+PACMAN_CNOC_HOME=/tools/sw-tools/pacman_cnoc
+OVA_UUM=0
+OSTYPE=linux
+OBFS_HOME=/tools/sw-tools/obfuscator
+OASYS_HOME=/tools/mentor/OASYS/Oasys-RTL-2022.2.R1
+MODUSHOME=/tools1/cadence/installs/MODUS201/
+MODULESHOME=/usr/share/lmod/lmod
+MODULEPATH_ROOT=/usr/share/modulefiles
+MODULEPATH=/etc/modulefiles:/usr/share/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core
+MMSIMHOME=/tools/cadence/SPECTRE201
+MGLS_LICENSE_FILE=1717@10.0.0.221:1717@10.1.2.11
+MGLS_DEBUG_LOG_DIR=/tmp
+MENTOR_HOME=/tools/mentor
+MAGIC_VLSI_VERSION=8.3.99
+MAGIC_VLSI_HOME=/tools/magic-vlsi/8.3.99
+LMOD_sys=Linux
+LMOD_VERSION=8.7.20
+LMOD_SETTARG_FULL_SUPPORT=no
+LMOD_SETTARG_CMD=:
+LMOD_ROOT=/usr/share/lmod
+LMOD_PKG=/usr/share/lmod/lmod
+LMOD_DIR=/usr/share/lmod/lmod/libexec
+LMOD_CMD=/usr/share/lmod/lmod/libexec/lmod
+LESSOPEN=||/usr/bin/lesspipe.sh %s
+LC_ALL=C
+INOCULATOR_HOME=/tools/sw-tools/inoculator
+INNOVUSHOME=/tools/cadence/INNOVUS211-ISR7
+HSPICE_VERSION=U-2023.03-SP2-2
+HSPICE_HOME=/tools/SYNOPSYS/Products/primesim/hspice/U-2023.03-SP2-2/hspice
+HOSTTYPE=x86_64-linux
+HLSHOME=/tools/cadence/HLS
+GROUP=users
+GLADE_HOME=/tools/GLADE/glade5_linux64_rh8
+GDK_BACKEND=x11
+DDIHOME=/tools/cadence/DDI221
+DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-zQzgCAjUF0,guid=180464cbf7eca5b3f881166a661e09c8
+CVS_RSH=ssh
+CONFRML_HOME=/tools1/cadence/installs/CONFRML211/
+CDSHOME=/tools/cadence/IC618.2021.10.01
+CDN_SYNTH_ROOT=/tools/cadence/GENUS211
+CDN_HOME=/tools/cadence
+CALIBRE_HOME=/tools/mentor/CALIBRE/aok_cal_2023.1_34.18
+BASH_ENV=/usr/share/lmod/lmod/init/bash
+AVERY_VIP_LIC_FILE=/opt/avery/avery_license.dat
+AVERY_USB=/tools/avery/usbxactor-3.2a.0716
+AVERY_SMB=/tools/avery/smbxactor-3.0.190614
+AVERY_SATA_VERSION=1.9g8
+AVERY_SATA=/tools/avery/sataxactor-1.9g8
+AVERY_PLI_VERSION=2020_1124
+AVERY_PLI=/tools/avery/avery_pli-2020_1124
+AVERY_PCIE_VERSION=2.5b
+AVERY_PCIE=/home/smishra/apciexactor-2.5a.cxl
+AVERY_NVME_VERSION=2.6d
+AVERY_NVME=/tools/avery/nvmxactor-2.6d
+AVERY_LPDDR=/tools/avery/lpddrxactor-2.6.0521
+AVERY_HOME=/tools/avery
+AVERY_ENET_VERSION=03.0.1106
+AVERY_ENET=/tools/avery/enetxactor-03.0.1106
+AVERY_DP_VERSION=1.1.201016
+AVERY_DP=/tools/avery/dpxactor-1.1.201016
+AVERY_DDR_VERSION=2.6.0528
+AVERY_DDR=/tools/avery/ddrxactor-2.6.0528
+AVERY_CHI=/tools/avery/chixactor-2.0e.240220
+AVERY_AXI_VERSION=2.1e.231016
+AVERY_AXI=/tools/avery/axixactor-2.1e.231016
+AVERY_APB=/tools/avery/apbxactor-1.0.180715
+AVERY_AHB_VERSION=1.6.230830
+AVERY_AHB=/tools/avery/ahbxactor-1.6.230830
+AVERY_ACE=/tools/avery/acexactor-2.1e.230627
+ASSURAHOME=/tools/cadence/ASSURA41U
+ARM_HOME=/tools/arm-gnu/install/arm-gnu-toolchain-12.2.rel1-x86_64-arm-none-eabi/
+APRISA_HOME=/tools/mentor/APRISA/AP_22/AP_22.R2
+ANDES_HOME=/tools/andes
+ANDESYSC_TOOLCHAIN=/tools/AndeSysC/install/release_root/toolchain/nds64le-elf-mculib-v5
+ANDESYSC_HOME=/tools/AndeSysC/install/release_root
+ALTOSHOME=/tools/cadence/LIBERATE211
+0
+0
+10
+1713507295 /data-sipc/users/smishra/workspace/ASYNC_FIFO_24/verif/tb/sig_async_fifo_tb_top.sv
+1713504704 /data-sipc/users/smishra/workspace/ASYNC_FIFO_24/rtl/fifo_top.sv
+1713436915 /data-sipc/users/smishra/workspace/ASYNC_FIFO_24/rtl/rdptr_handler.sv
+1713436264 /data-sipc/users/smishra/workspace/ASYNC_FIFO_24/rtl/wrptr_handler.sv
+1713504758 /data-sipc/users/smishra/workspace/ASYNC_FIFO_24/rtl/fifo_memory.sv
+1713436899 /data-sipc/users/smishra/workspace/ASYNC_FIFO_24/rtl/synchronizer.sv
+1713268092 /data-sipc/users/smishra/workspace/ASYNC_FIFO_24/verif/tb/sig_async_fifo_tb_flst.f
+1713438180 /data-sipc/users/smishra/workspace/ASYNC_FIFO_24/rtl/sig_async_fifo_flst.f
+1676546067 /tools/SYNOPSYS/Products/verdi/U-2023.03/share/PLI/VCS/LINUX64/verdi.tab
+1654052745 /tools/SYNOPSYS/Products/vcs/T-2022.06/linux64/lib/vcsdp_lite.tab
+4
+1654054205 /tools/SYNOPSYS/Products/vcs/T-2022.06/linux64/lib/libvirsim.so
+1654053585 /tools/SYNOPSYS/Products/vcs/T-2022.06/linux64/lib/liberrorinf.so
+1654053489 /tools/SYNOPSYS/Products/vcs/T-2022.06/linux64/lib/libsnpsmalloc.so
+1654053565 /tools/SYNOPSYS/Products/vcs/T-2022.06/linux64/lib/libvfs.so
+1713507334 simv.daidir
+-1 partitionlib

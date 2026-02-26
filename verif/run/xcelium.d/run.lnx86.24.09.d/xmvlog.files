@@ -1,0 +1,17 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
+/scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/rtl/synchronizer.sv
+/scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/rtl/fifo_memory.sv
+/scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/rtl/wrptr_handler.sv
+/scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/rtl/rdptr_handler.sv
+/scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/rtl/fifo_top.sv
+/scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/verif/tb/fifo_interface.sv
+/scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/verif/tb/fifo_transaction.sv
+/scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/verif/tb/fifo_driver.sv
+/scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/verif/tb/fifo_monitor.sv
+/scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/verif/tb/fifo_scoreboard.sv
+/scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/verif/tb/fifo_env.sv
+/scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/verif/tb/fifo_test.sv
+/scratch/users/sdash/ASSIGNMENT/ASYNC_FIFO_E/verif/tb/tb_top.sv
