@@ -16,14 +16,11 @@
 
 //=============================================================================
 // 1. INTERFACE
-//    Bundles all DUT signals; provides modports for driver, monitor, DUT.
 //=============================================================================
-
 interface fifo_if #(parameter FIFO_WIDTH = 64) (
     input logic wrclk,   // Write-domain clock  (driven from tb_top)
     input logic rdclk    // Read-domain  clock  (driven from tb_top)
 );
-
     //-------------------------------------------------------------------------
     // Write-domain signals
     //-------------------------------------------------------------------------
@@ -32,7 +29,6 @@ interface fifo_if #(parameter FIFO_WIDTH = 64) (
     logic [FIFO_WIDTH-1:0] data_in;    // Write data bus
 
     logic                  fifo_full;  // Full flag  (output from DUT)
-
     //-------------------------------------------------------------------------
     // Read-domain signals
     //-------------------------------------------------------------------------
@@ -42,9 +38,6 @@ interface fifo_if #(parameter FIFO_WIDTH = 64) (
                                        // (valid 1 rdclk after rd_en assertion)
     logic                  fifo_empty; // Empty flag (output from DUT)
 
-    //-------------------------------------------------------------------------
-    // Modport : DUT connections
-    //-------------------------------------------------------------------------
     modport dut_mp (
         input  wrclk, wrst_n, wr_en, data_in,
         input  rdclk, rrst_n, rd_en,
@@ -53,10 +46,6 @@ interface fifo_if #(parameter FIFO_WIDTH = 64) (
         output fifo_empty
     );
 
-    //-------------------------------------------------------------------------
-    // Modport : Write-side testbench driver
-    //-------------------------------------------------------------------------
-    modport wr_tb_mp (
         input  wrclk,
         input  fifo_full,
         output wrst_n,
@@ -64,9 +53,6 @@ interface fifo_if #(parameter FIFO_WIDTH = 64) (
         output data_in
     );
 
-    //-------------------------------------------------------------------------
-    // Modport : Read-side testbench driver
-    //-------------------------------------------------------------------------
     modport rd_tb_mp (
         input  rdclk,
         input  data_out,
@@ -75,9 +61,6 @@ interface fifo_if #(parameter FIFO_WIDTH = 64) (
         output rd_en
     );
 
-    //-------------------------------------------------------------------------
-    // Modport : Monitor  (observe-only access to all signals)
-    //-------------------------------------------------------------------------
     modport mon_mp (
         input wrclk, wrst_n, wr_en,  data_in,  fifo_full,
         input rdclk, rrst_n, rd_en,  data_out, fifo_empty
@@ -88,12 +71,7 @@ endinterface : fifo_if
 
 //=============================================================================
 // 2. TRANSACTION
-//    Enum + class carrying stimulus and observed fields.
 //=============================================================================
-
-//-----------------------------------------------------------------------------
-// Enum : categorises what kind of FIFO operation a transaction represents.
-//-----------------------------------------------------------------------------
 typedef enum logic [1:0] {
     FIFO_IDLE  = 2'b00,
     FIFO_WRITE = 2'b01,
@@ -105,16 +83,10 @@ typedef enum logic [1:0] {
 //-----------------------------------------------------------------------------
 class fifo_transaction #(parameter FIFO_WIDTH = 64);
 
-    //-------------------------------------------------------------------------
-    // Randomisable stimulus fields
-    //-------------------------------------------------------------------------
     rand bit                  wr_en;   // Write enable
     rand bit                  rd_en;   // Read  enable
     rand bit [FIFO_WIDTH-1:0] data;    // Write data (ignored on pure reads)
 
-    //-------------------------------------------------------------------------
-    // Non-randomised observed / annotated fields
-    //-------------------------------------------------------------------------
     bit [FIFO_WIDTH-1:0] data_out;    // Read data captured by monitor
     bit                  fifo_full;   // Full  flag observed at sample time
     bit                  fifo_empty;  // Empty flag observed at sample time
@@ -126,15 +98,6 @@ class fifo_transaction #(parameter FIFO_WIDTH = 64);
     // Constraints
     //-------------------------------------------------------------------------
 
-    // At least one of wr_en / rd_en must be active – avoids fully-idle beats
-    constraint c_at_least_one {
-        wr_en | rd_en;
-    }
-
-    // Slight write bias so the FIFO fills before reads drain it
-    constraint c_write_bias {
-        wr_en dist { 1 := 60, 0 := 40 };
-    }
 
     //-------------------------------------------------------------------------
     // display() – print transaction contents to transcript
@@ -165,7 +128,6 @@ endclass : fifo_transaction
 
 //=============================================================================
 // 3. DRIVER
-//    Two independent tasks drive the write and read clock domains concurrently.
 //=============================================================================
 
 class fifo_driver #(parameter FIFO_WIDTH = 64);
@@ -236,7 +198,18 @@ class fifo_driver #(parameter FIFO_WIDTH = 64);
                 $display("[DRIVER-WR] @%0t  wr_en=1  data=0x%016h", $time, txn.data);
                 wr_count++;
 
-                // Hold for one write-clock period, then deassert
+                // Sustain wr_en for back-to-back writes (burst)
+                while (wr_mbx.try_peek(txn)) begin
+                    if (!txn.wr_en) break;
+                    wr_mbx.get(txn);
+                    while (vif.fifo_full) @(posedge vif.wrclk);
+                    @(posedge vif.wrclk); #1;
+                    vif.data_in = txn.data;
+                    $display("[DRIVER-WR] @%0t  wr_en=1  data=0x%016h (burst)", $time, txn.data);
+                    wr_count++;
+                end
+
+                // Deassert only when no more consecutive writes are queued
                 @(posedge vif.wrclk); #1;
                 vif.wr_en   = 1'b0;
                 vif.data_in = '0;
@@ -262,7 +235,17 @@ class fifo_driver #(parameter FIFO_WIDTH = 64);
                 $display("[DRIVER-RD] @%0t  rd_en=1", $time);
                 rd_count++;
 
-                // Hold for one read-clock period, then deassert
+                // Sustain rd_en for back-to-back reads (burst)
+                while (rd_mbx.try_peek(txn)) begin
+                    if (!txn.rd_en) break;
+                    rd_mbx.get(txn);
+                    while (vif.fifo_empty) @(posedge vif.rdclk);
+                    @(posedge vif.rdclk); #1;
+                    $display("[DRIVER-RD] @%0t  rd_en=1 (burst)", $time);
+                    rd_count++;
+                end
+
+                // Deassert only when no more consecutive reads are queued
                 @(posedge vif.rdclk); #1;
                 vif.rd_en = 1'b0;
             end
@@ -274,9 +257,6 @@ endclass : fifo_driver
 
 //=============================================================================
 // 4. MONITOR
-//    Observes both clock domains; forwards transactions to the scoreboard.
-//    Uses rd_was_valid to account for the DUT's registered data_out output
-//    (data_out is valid ONE rdclk cycle after rd_en was asserted).
 //=============================================================================
 
 class fifo_monitor #(parameter FIFO_WIDTH = 64);
@@ -372,8 +352,6 @@ endclass : fifo_monitor
 
 //=============================================================================
 // 5. SCOREBOARD
-//    Reference model using a SV queue.  Checks that every read returns the
-//    data written in FIFO order.
 //=============================================================================
 
 class fifo_scoreboard #(parameter FIFO_WIDTH = 64);
@@ -494,7 +472,6 @@ endclass : fifo_scoreboard
 
 //=============================================================================
 // 6. ENVIRONMENT
-//    Instantiates driver, monitor, scoreboard and wires their mailboxes.
 //=============================================================================
 
 class fifo_env #(parameter FIFO_WIDTH = 64);
@@ -642,7 +619,6 @@ endclass : fifo_test
 
 //=============================================================================
 // 8. TB TOP MODULE
-//    Clock generation, reset, DUT instantiation, test launch, watchdog, VCD.
 //=============================================================================
 
 module tb_top;

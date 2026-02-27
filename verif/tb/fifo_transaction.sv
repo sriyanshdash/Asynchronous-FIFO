@@ -46,16 +46,6 @@ class fifo_transaction #(parameter FIFO_WIDTH = 64);
     // Constraints
     //-------------------------------------------------------------------------
 
-    // At least one of wr_en / rd_en must be active – avoids fully-idle beats
-    constraint c_at_least_one {
-        wr_en | rd_en;
-    }
-
-    // Slight write bias so the FIFO fills before reads drain it
-    constraint c_write_bias {
-        wr_en dist { 1 := 60, 0 := 40 };
-    }
-
     //-------------------------------------------------------------------------
     // display() – print transaction contents to transcript
     //-------------------------------------------------------------------------

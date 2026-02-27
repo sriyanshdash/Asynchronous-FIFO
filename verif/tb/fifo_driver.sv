@@ -69,7 +69,7 @@ class fifo_driver #(parameter FIFO_WIDTH = 64);
             drive_read();
         join_none
     endtask
-
+/*
     //=========================================================================
     // Write-domain driver  (clocked on wrclk)
     //=========================================================================
@@ -125,7 +125,81 @@ class fifo_driver #(parameter FIFO_WIDTH = 64);
             end
         end
     endtask
+*/
 
+    //=========================================================================
+    // Write-domain driver  (clocked on wrclk)
+    //=========================================================================
+    task drive_write();
+        fifo_transaction #(FIFO_WIDTH) txn;
+        forever begin
+            wr_mbx.get(txn);
+
+            if (txn.wr_en) begin
+                // Wait until the FIFO has at least one empty slot
+                while (vif.fifo_full) @(posedge vif.wrclk);
+
+                // Apply stimulus #1ns after edge to avoid delta races
+                @(posedge vif.wrclk); #1;
+                vif.wr_en   = 1'b1;
+                vif.data_in = txn.data;
+                $display("[DRIVER-WR] @%0t  wr_en=1  data=0x%016h", $time, txn.data);
+                wr_count++;
+
+                // Sustain wr_en for back-to-back writes (burst)
+                while (wr_mbx.try_peek(txn)) begin
+                    if (!txn.wr_en) break;
+                    wr_mbx.get(txn);
+                    while (vif.fifo_full) @(posedge vif.wrclk);
+                    @(posedge vif.wrclk); #1;
+                    vif.data_in = txn.data;
+                    $display("[DRIVER-WR] @%0t  wr_en=1  data=0x%016h (burst)", $time, txn.data);
+                    wr_count++;
+                end
+
+                // Deassert only when no more consecutive writes are queued
+                @(posedge vif.wrclk); #1;
+                vif.wr_en   = 1'b0;
+                vif.data_in = '0;
+            end
+        end
+    endtask
+
+    //=========================================================================
+    // Read-domain driver  (clocked on rdclk)
+    //=========================================================================
+    task drive_read();
+        fifo_transaction #(FIFO_WIDTH) txn;
+        forever begin
+            rd_mbx.get(txn);
+
+            if (txn.rd_en) begin
+                // Wait until the FIFO has data to read
+                while (vif.fifo_empty) @(posedge vif.rdclk);
+
+                // Apply stimulus #1ns after edge to avoid delta races
+                @(posedge vif.rdclk); #1;
+                vif.rd_en = 1'b1;
+                $display("[DRIVER-RD] @%0t  rd_en=1", $time);
+                rd_count++;
+
+                // Sustain rd_en for back-to-back reads (burst)
+                while (rd_mbx.try_peek(txn)) begin
+                    if (!txn.rd_en) break;
+                    rd_mbx.get(txn);
+                    while (vif.fifo_empty) @(posedge vif.rdclk);
+                    @(posedge vif.rdclk); #1;
+                    $display("[DRIVER-RD] @%0t  rd_en=1 (burst)", $time);
+                    rd_count++;
+                end
+
+                // Deassert only when no more consecutive reads are queued
+                @(posedge vif.rdclk); #1;
+                vif.rd_en = 1'b0;
+            end
+        end
+    endtask
+    
 endclass : fifo_driver
 
 `endif // FIFO_DRIVER_SV
