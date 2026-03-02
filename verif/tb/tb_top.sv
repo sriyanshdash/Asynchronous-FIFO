@@ -121,7 +121,7 @@ module tb_top;
         runner = new(dut_if);
         runner.run(test_name);   // run() calls $finish when done
     end
-
+/*
     //-------------------------------------------------------------------------
     // Watchdog timer – prevents infinite hangs (100 µs ceiling)
     //-------------------------------------------------------------------------
@@ -130,7 +130,7 @@ module tb_top;
         $display("[TB_TOP] WATCHDOG: Simulation exceeded 100 µs – forcing $finish");
         $finish;
     end
-
+*/
     //-------------------------------------------------------------------------
     // Waveform dump
     // Generates a standard VCD file readable by SimVision and any other viewer.
@@ -143,7 +143,7 @@ module tb_top;
             $dumpvars(0, tb_top);       // dump ALL signals under tb_top hierarchy
         `endif
     end
-/*    
+//.shm file dump 
 initial begin
   `ifdef DUMP_ON
     `ifdef CADENCE
@@ -152,6 +152,6 @@ initial begin
    `endif
  `endif
 end
-*/
+
   
 endmodule : tb_top
