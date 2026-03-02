@@ -62,6 +62,18 @@ class fifo_env #(parameter FIFO_WIDTH = 64);
     endfunction
 
     //-------------------------------------------------------------------------
+    // reset() – clear scoreboard state and drain driver mailboxes between tests
+    //-------------------------------------------------------------------------
+    function void reset();
+        fifo_transaction #(FIFO_WIDTH) tmp;
+        // Drain any residual transactions from driver mailboxes
+        while (wr_mbx.try_get(tmp));
+        while (rd_mbx.try_get(tmp));
+        // Clear scoreboard state
+        scb.reset();
+    endfunction
+
+    //-------------------------------------------------------------------------
     // run() – start all components; each launches its own background threads
     //-------------------------------------------------------------------------
     task run();

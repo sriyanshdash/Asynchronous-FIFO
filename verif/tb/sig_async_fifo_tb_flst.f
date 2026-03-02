@@ -28,8 +28,20 @@ ${SIG_FIFO_HOME}/verif/tb/fifo_scoreboard.sv
 // ---- 6. Environment : depends on driver, monitor, scoreboard ----------------
 ${SIG_FIFO_HOME}/verif/tb/fifo_env.sv
 
-// ---- 7. Test : depends on fifo_env ------------------------------------------
-${SIG_FIFO_HOME}/verif/tb/fifo_test.sv
+// ---- 7. Test base : helper tasks shared by all tests ------------------------
+${SIG_FIFO_HOME}/verif/tb/fifo_test_base.sv
 
-// ---- 8. TB Top : top-level module, depends on fifo_if + fifo_test -----------
+// ---- 8. Individual tests : each depends on fifo_test_base -------------------
+${SIG_FIFO_HOME}/verif/tb/test_basic.sv
+${SIG_FIFO_HOME}/verif/tb/test_fill_drain.sv
+${SIG_FIFO_HOME}/verif/tb/test_simultaneous_rw.sv
+${SIG_FIFO_HOME}/verif/tb/test_overflow_underflow.sv
+${SIG_FIFO_HOME}/verif/tb/test_reset.sv
+${SIG_FIFO_HOME}/verif/tb/test_pointer_wrap.sv
+${SIG_FIFO_HOME}/verif/tb/test_clock_ratio.sv
+
+// ---- 9. Test runner : orchestrator, depends on all tests --------------------
+${SIG_FIFO_HOME}/verif/tb/fifo_test_runner.sv
+
+// ---- 10. TB Top : top-level module, depends on fifo_if + fifo_test_runner ---
 ${SIG_FIFO_HOME}/verif/tb/tb_top.sv

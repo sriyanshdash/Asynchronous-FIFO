@@ -259,6 +259,33 @@ class fifo_scoreboard #(parameter FIFO_WIDTH = 64);
     endfunction
 
     //=========================================================================
+    // reset() - clear all state so the scoreboard can be reused across tests
+    //=========================================================================
+    function void reset();
+        ref_q.delete();
+        wr_data_log.delete();
+        wr_mon_times.delete();
+        wr_scb_times.delete();
+        wr_full_log.delete();
+        wr_empty_log.delete();
+        wr_depth_log.delete();
+        wr_count   = 0;
+        rd_count   = 0;
+        pass_count = 0;
+        fail_count = 0;
+        // Also clear the static driver timestamp logs
+        fifo_txn_log::wr_drv_times.delete();
+        fifo_txn_log::rd_drv_times.delete();
+    endfunction
+
+    //=========================================================================
+    // is_pass() - returns 1 if no failures and ref_q is drained
+    //=========================================================================
+    function bit is_pass();
+        return (fail_count == 0 && ref_q.size() == 0);
+    endfunction
+
+    //=========================================================================
     // report() - print final simulation summary; called from the test
     //=========================================================================
     function void report();

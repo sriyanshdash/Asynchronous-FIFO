@@ -14,7 +14,7 @@
 `timescale 1ns/1ps
 
 `include "fifo_interface.sv"
-`include "fifo_test.sv"
+`include "fifo_test_runner.sv"
 
 module tb_top;
 
@@ -27,17 +27,23 @@ module tb_top;
 
     //-------------------------------------------------------------------------
     // Clock signals
-    //   wrclk : 10 ns period  (100 MHz) – write domain
-    //   rdclk : 13 ns period  (~77 MHz) – read domain (intentionally async)
+    //   wrclk : default 10 ns period  (100 MHz) – write domain
+    //   rdclk : default 13 ns period  (~77 MHz) – read domain
+    //
+    //   Half-periods are stored in realtime variables so tests can change
+    //   the clock ratio at runtime (e.g. for fast-write / fast-read scenarios).
     //-------------------------------------------------------------------------
     logic wrclk;
     logic rdclk;
 
+    realtime wrclk_half = 5.0;    // 10 ns period = 100 MHz
+    realtime rdclk_half = 6.5;    // 13 ns period ≈  77 MHz
+
     initial wrclk = 1'b0;
-    always  #5   wrclk = ~wrclk;   // 10 ns period
+    always  #(wrclk_half) wrclk = ~wrclk;
 
     initial rdclk = 1'b0;
-    always  #6.5 rdclk = ~rdclk;   // 13 ns period
+    always  #(rdclk_half) rdclk = ~rdclk;
 
     //-------------------------------------------------------------------------
     // Interface instantiation
@@ -92,9 +98,18 @@ module tb_top;
 
     //-------------------------------------------------------------------------
     // Test execution
+    // Use +TEST_NAME=<name> to run a specific test, or omit for all tests.
+    // Available tests: test_basic, test_fill_drain, test_simultaneous_rw,
+    //                  test_overflow_underflow, test_reset, test_pointer_wrap,
+    //                  test_clock_ratio
     //-------------------------------------------------------------------------
     initial begin
-        fifo_test #(FIFO_WIDTH, NUM_TXNS) test_h;
+        string test_name;
+        fifo_test_runner #(FIFO_WIDTH, FIFO_DEPTH) runner;
+
+        // Read test selection from plusarg; default to "all"
+        if (!$value$plusargs("TEST_NAME=%s", test_name))
+            test_name = "all";
 
         // Wait until both resets have been deasserted
         wait (dut_if.wrst_n === 1'b1 && dut_if.rrst_n === 1'b1);
@@ -102,9 +117,9 @@ module tb_top;
         // Allow one extra write-clock cycle for the DUT to settle
         @(posedge wrclk); #1;
 
-        // Construct the test and run it
-        test_h = new(dut_if);
-        test_h.run();           // run() calls $finish when done
+        // Construct the runner and execute
+        runner = new(dut_if);
+        runner.run(test_name);   // run() calls $finish when done
     end
 
     //-------------------------------------------------------------------------
