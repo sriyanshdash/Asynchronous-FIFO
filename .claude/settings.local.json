@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.sunburst-design.com)",
+      "WebFetch(domain:www.paradigm-works.com)",
+      "Bash(python -c \":*)",
+      "Bash(py --version)",
+      "Bash(pip install PyPDF2)",
+      "Bash(py -c \":*)",
+      "Bash(pip install pymupdf)",
+      "Bash(py -m pip install pymupdf)",
+      "Bash(/c/Users/sriyansh/AppData/Local/Microsoft/WindowsApps/python3.exe -m pip install pymupdf)"
+    ]
+  }
+}

@@ -143,7 +143,7 @@ class fifo_driver #(parameter FIFO_WIDTH = 64);
                 @(posedge vif.wrclk); #1;
                 vif.wr_en   = 1'b1;
                 vif.data_in = txn.data;
-                $display("[DRIVER-WR] @%0t  wr_en=1  data=0x%016h", $time, txn.data);
+                fifo_txn_log::wr_drv_times.push_back($time);
                 wr_count++;
 
                 // Sustain wr_en for back-to-back writes (burst)
@@ -153,7 +153,7 @@ class fifo_driver #(parameter FIFO_WIDTH = 64);
                     while (vif.fifo_full) @(posedge vif.wrclk);
                     @(posedge vif.wrclk); #1;
                     vif.data_in = txn.data;
-                    $display("[DRIVER-WR] @%0t  wr_en=1  data=0x%016h (burst)", $time, txn.data);
+                    fifo_txn_log::wr_drv_times.push_back($time);
                     wr_count++;
                 end
 
@@ -180,7 +180,7 @@ class fifo_driver #(parameter FIFO_WIDTH = 64);
                 // Apply stimulus #1ns after edge to avoid delta races
                 @(posedge vif.rdclk); #1;
                 vif.rd_en = 1'b1;
-                $display("[DRIVER-RD] @%0t  rd_en=1", $time);
+                fifo_txn_log::rd_drv_times.push_back($time);
                 rd_count++;
 
                 // Sustain rd_en for back-to-back reads (burst)
@@ -189,7 +189,7 @@ class fifo_driver #(parameter FIFO_WIDTH = 64);
                     rd_mbx.get(txn);
                     while (vif.fifo_empty) @(posedge vif.rdclk);
                     @(posedge vif.rdclk); #1;
-                    $display("[DRIVER-RD] @%0t  rd_en=1 (burst)", $time);
+                    fifo_txn_log::rd_drv_times.push_back($time);
                     rd_count++;
                 end
 
@@ -199,7 +199,7 @@ class fifo_driver #(parameter FIFO_WIDTH = 64);
             end
         end
     endtask
-    
+
 endclass : fifo_driver
 
 `endif // FIFO_DRIVER_SV

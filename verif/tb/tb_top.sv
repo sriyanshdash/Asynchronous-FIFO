@@ -128,6 +128,7 @@ module tb_top;
             $dumpvars(0, tb_top);       // dump ALL signals under tb_top hierarchy
         `endif
     end
+/*    
 initial begin
   `ifdef DUMP_ON
     `ifdef CADENCE
@@ -136,5 +137,6 @@ initial begin
    `endif
  `endif
 end
+*/
   
 endmodule : tb_top

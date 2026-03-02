@@ -42,17 +42,12 @@ class fifo_transaction #(parameter FIFO_WIDTH = 64);
     // Set by monitor or test to classify the transaction
     fifo_txn_type_e txn_type;
 
+    // Timestamp set by the monitor at capture time
+    time capture_time;
+
     //-------------------------------------------------------------------------
     // Constraints
     //-------------------------------------------------------------------------
-    constraint c_at_least_one {
-        wr_en | rd_en;  // At least one of write or read must be active
-    }
-    
-    constraint c_write_bias {
-        // Bias towards writes to ensure we get some data in the FIFO for reads
-        wr_en dist { 1 := 60, 0 := 40 };
-    }
     //-------------------------------------------------------------------------
     // display() – print transaction contents to transcript
     //-------------------------------------------------------------------------
@@ -61,7 +56,7 @@ class fifo_transaction #(parameter FIFO_WIDTH = 64);
                  $time, tag, txn_type.name(),
                  wr_en, rd_en, data, fifo_full, fifo_empty);
     endfunction
-
+/*
     //-------------------------------------------------------------------------
     // copy() – return a deep copy of this transaction
     //-------------------------------------------------------------------------
@@ -76,7 +71,18 @@ class fifo_transaction #(parameter FIFO_WIDTH = 64);
         t.txn_type   = this.txn_type;
         return t;
     endfunction
-
+*/
 endclass : fifo_transaction
+
+//-----------------------------------------------------------------------------
+// Class : fifo_txn_log  (static)
+// Shared timestamp log so the scoreboard can display driver-side times
+// in the grouped transaction view.  Driver pushes times here; scoreboard
+// pops them in FIFO order when printing each grouped block.
+//-----------------------------------------------------------------------------
+class fifo_txn_log;
+    static time wr_drv_times[$];   // write-driver timestamps, in order
+    static time rd_drv_times[$];   // read-driver  timestamps, in order
+endclass
 
 `endif // FIFO_TRANSACTION_SV

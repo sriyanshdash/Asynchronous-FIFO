@@ -8,32 +8,32 @@
 ╔══════════════════════════════════════════════════════════════════════════════════╗
 ║  tb_top  (module)                                                                ║
 ║                                                                                  ║
-║   ┌─────────────────┐   ┌─────────────────┐                                    ║
-║   │  wrclk 100 MHz  │   │  rdclk  77 MHz  │   < clock generators               ║
-║   │  always #5      │   │  always #6.5    │                                    ║
-║   └────────┬────────┘   └────────┬────────┘                                    ║
+║   ┌─────────────────┐   ┌─────────────────┐                                      ║
+║   │  wrclk 100 MHz  │   │  rdclk  77 MHz  │   < clock generators                 ║
+║   │  always #5      │   │  always #6.5    │                                      ║
+║   └────────┬────────┘   └────────┬────────┘                                      ║
 ║            │ input                │ input                                        ║
-║   ┌────────▼────────────────────▼──────────────────────────────────────────┐   ║
-║   │  fifo_if  (interface)          FIFO_WIDTH = 64                          │   ║
-║   │                                                                          │   ║
-║   │  Write Domain :  wrclk  wrst_n  wr_en  data_in[63:0]  fifo_full        │   ║
-║   │  Read  Domain :  rdclk  rrst_n  rd_en  data_out[63:0] fifo_empty       │   ║
-║   │                                                                          │   ║
-║   │  modports :  dut_mp  |  wr_tb_mp  |  rd_tb_mp  |  mon_mp (read-only)  │   ║
-║   └──────────┬─────────────────────────────────────────────┬───────────────┘   ║
-║              │ connected directly                           │ virtual fifo_if   ║
-║              │                                              │                   ║
-║   ┌──────────▼──────────────────────────┐      ┌───────────▼──────────────┐   ║
-║   │  asynchronous_fifo  (DUT)            │      │  fifo_test               │   ║
-║   │  FIFO_DEPTH=8  FIFO_WIDTH=64        │      │                          │   ║
-║   │                                     │      │  ┌────────────────────┐  │   ║
-║   │  wrclk ──► wrptr_handler            │      │  │  fifo_env          │  │   ║
-║   │            synchronizer (2-flop CDC)│      │  │                    │  │   ║
-║   │  rdclk ──► rdptr_handler            │      │  │  fifo_driver       │  │   ║
-║   │            fifo_memory              │      │  │  fifo_monitor      │  │   ║
-║   │            (registered data_out)   │      │  │  fifo_scoreboard   │  │   ║
-║   └─────────────────────────────────────┘      │  └────────────────────┘  │   ║
-║                                                 └──────────────────────────┘   ║
+║   ┌────────▼────────────────────▼──────────────────────────────────────────┐     ║
+║   │  fifo_if  (interface)          FIFO_WIDTH = 64                         │     ║
+║   │                                                                        │     ║
+║   │  Write Domain :  wrclk  wrst_n  wr_en  data_in[63:0]  fifo_full        │     ║
+║   │  Read  Domain :  rdclk  rrst_n  rd_en  data_out[63:0] fifo_empty       │     ║
+║   │                                                                        │     ║
+║   │  modports :  dut_mp  |  wr_tb_mp  |  rd_tb_mp  |  mon_mp (read-only)   │     ║
+║   └──────────┬─────────────────────────────────────────────┬───────────────┘     ║
+║              │ connected directly                          │ virtual fifo_if     ║ 
+║              │                                             │                     ║
+║   ┌──────────▼──────────────────────────┐      ┌───────────▼──────────────┐      ║
+║   │  asynchronous_fifo  (DUT)           │      │  fifo_test               │      ║
+║   │  FIFO_DEPTH=8  FIFO_WIDTH=64        │      │                          │      ║
+║   │                                     │      │  ┌────────────────────┐  │      ║
+║   │  wrclk ──► wrptr_handler            │      │  │  fifo_env          │  │      ║
+║   │            synchronizer (2-flop CDC)│      │  │                    │  │      ║
+║   │  rdclk ──► rdptr_handler            │      │  │  fifo_driver       │  │      ║
+║   │            fifo_memory              │      │  │  fifo_monitor      │  │      ║
+║   │            (registered data_out)    │      │  │  fifo_scoreboard   │  │      ║
+║   └─────────────────────────────────────┘      │  └────────────────────┘  │      ║
+║                                                 └──────────────────────────┘     ║
 ╚══════════════════════════════════════════════════════════════════════════════════╝
 ```
 
@@ -43,11 +43,11 @@
 
 ```
                  ┌───────────────────────────────────────────────────┐
-                 │                   fifo_test                        │
-                 │                                                    │
+                 │                   fifo_test                       │
+                 │                                                   │
                  │  Phase 1 : generate 20 WRITE txns (randomized)    │
-                 │  Phase 2 : generate 20 READ  txns                  │
-                 │  Phase 3 : #10000 (wait for drain)                 │
+                 │  Phase 2 : generate 20 READ  txns                 │
+                 │  Phase 3 : #10000 (wait for drain)                │
                  │  Phase 4 : scb.report()  →  $finish               │
                  └──────────────────┬──────────────┬─────────────────┘
                                     │              │
@@ -60,11 +60,11 @@
                ┌────────────▼────────────────────────────▼──────────────┐
                │                    fifo_driver                          │
                │                                                         │
-               │   ┌───────────────────────┐  ┌───────────────────────┐ │
-               │   │    drive_write()       │  │    drive_read()        │ │
-               │   │    (wrclk domain)      │  │    (rdclk domain)      │ │
+               │   ┌───────────────────────┐  ┌───────────────────────┐  │
+               │   │    drive_write()      │  │    drive_read()        │ │
+               │   │    (wrclk domain)     │  │    (rdclk domain)      │ │
                │   │                       │  │                        │ │
-               │   │  while(fifo_full)wait  │  │  while(fifo_empty)wait │ │
+               │   │  while(fifo_full)wait │  │  while(fifo_empty)wait │ │
                │   │  @posedge wrclk; #1ns │  │  @posedge rdclk; #1ns  │ │
                │   │  wr_en=1, data_in=... │  │  rd_en=1               │ │
                │   │  @posedge wrclk; #1ns │  │  @posedge rdclk; #1ns  │ │
@@ -74,7 +74,7 @@
                               │  drives                     │  drives
                               ▼                             ▼
                ╔══════════════════════════════════════════════════════╗
-               ║           fifo_if  virtual interface                  ║
+               ║           fifo_if  virtual interface                 ║
                ║  wr_en  data_in  wrclk  │  rd_en  rdclk  data_out    ║
                ╚═══════════════════════╤══════════════╤═══════════════╝
                                        │  connected   │
@@ -89,20 +89,20 @@
                               └────────┬──────────────┬─────────┘
                                        │  observed    │
                ╔═══════════════════════▼══════════════▼═══════════════╗
-               ║           fifo_if  virtual interface                  ║
-               ║  (monitor reads same signals — observe only)          ║
+               ║           fifo_if  virtual interface                 ║
+               ║  (monitor reads same signals — observe only)         ║
                ╚═══════════════════╤══════════════════╤═══════════════╝
                                    │                  │
                ┌───────────────────▼──────────────────▼───────────────┐
-               │                  fifo_monitor                         │
-               │                                                        │
+               │                  fifo_monitor                        │
+               │                                                      │
                │  ┌──────────────────────────┐  ┌───────────────────┐ │
-               │  │   monitor_write()         │  │  monitor_read()   │ │
-               │  │   (wrclk domain)          │  │  (rdclk domain)   │ │
+               │  │   monitor_write()        │ │  monitor_read()    │ │
+               │  │   (wrclk domain)         │ │  (rdclk domain)    │ │
                │  │                          │  │                   │ │
-               │  │  @posedge wrclk          │  │  rd_was_valid flag │ │
+               │  │  @posedge wrclk          │  │  rd_was_valid flag│ │
                │  │  if wrst_n & wr_en       │  │  Cycle N:  detect │ │
-               │  │     & !fifo_full:        │  │    rd_en & !empty  │ │
+               │  │     & !fifo_full:        │  │    rd_en & !empty │ │
                │  │  capture data_in         │  │  Cycle N+1: latch │ │
                │  │  → wr_scb_mbx.put(txn)   │  │    data_out       │ │
                │  │                          │  │  → rd_scb_mbx     │ │
@@ -115,18 +115,18 @@
                     └───────┬───────┘                 └────────┬─────────┘
                             │  mailbox.get()                   │  mailbox.get()
                ┌────────────▼──────────────────────────────────▼────────────┐
-               │                    fifo_scoreboard                           │
-               │                                                               │
-               │   ref_q[$]  — SystemVerilog queue (software FIFO model)      │
-               │                                                               │
-               │   check_writes() :  ref_q.push_back(txn.data)               │
-               │                                                               │
-               │   check_reads()  :  exp = ref_q.pop_front()                 │
-               │                     txn.data_out === exp  →  PASS            │
-               │                     txn.data_out !== exp  →  FAIL            │
-               │                                                               │
-               │   report()  :  print totals, PASS/FAIL verdict               │
-               └───────────────────────────────────────────────────────────────┘
+               │                    fifo_scoreboard                         │
+               │                                                            │
+               │   ref_q[$]  — SystemVerilog queue (software FIFO model)    |
+               │                                                            │
+               │   check_writes() :  ref_q.push_back(txn.data)              │
+               │                                                            │
+               │   check_reads()  :  exp = ref_q.pop_front()                │
+               │                     txn.data_out === exp  →  PASS          │
+               │                     txn.data_out !== exp  →  FAIL          │
+               │                                                            │
+               │   report()  :  print totals, PASS/FAIL verdict             │  
+               └────────────────────────────────────────────────────────────-
 ```
 
 
@@ -136,7 +136,7 @@
 ```
   ┌──────────────────────────────────────────────────────────────────────────┐
   │                      wrclk DOMAIN  (100 MHz / 10 ns)                     │
-  │                                                                           │
+  │                                                                          │
   │   tb_top:  reset logic (wrst_n)                                          │
   │   DUT   :  wrptr_handler,  synchronizer input,  fifo_full generation     │
   │   Driver:  drive_write()   — @posedge wrclk; #1ns                        │
@@ -145,7 +145,7 @@
 
   ┌──────────────────────────────────────────────────────────────────────────┐
   │                      rdclk DOMAIN  (~77 MHz / 13 ns)                     │
-  │                                                                           │
+  │                                                                          │
   │   tb_top:  reset logic (rrst_n)                                          │
   │   DUT   :  rdptr_handler,  synchronizer output,  fifo_empty generation   │
   │            fifo_memory — registered data_out (1-cycle latency)           │
@@ -155,9 +155,9 @@
 
   Key CDC detail:
   ┌──────────────────────────────────────────────────────────────────────────┐
-  │  wrptr (Gray-coded)  ──► [2-flop synchronizer] ──► rdclk domain         │
-  │  rptr  (Gray-coded)  ──► [2-flop synchronizer] ──► wrclk domain         │
-  │                                                                           │
+  │  wrptr (Gray-coded)  ──► [2-flop synchronizer] ──► rdclk domain          │
+  │  rptr  (Gray-coded)  ──► [2-flop synchronizer] ──► wrclk domain          │
+  │                                                                          │
   │  Because flags are registered, the driver polls with a while() loop:     │
   │    while (vif.fifo_full)  @(posedge wrclk);   // safe flag sampling      │
   │    while (vif.fifo_empty) @(posedge rdclk);   // safe flag sampling      │
@@ -174,7 +174,7 @@
   │fifo_test │             │fifo_drv  │               │fifo_scorebrd│
   │          │ ──────────► │          │               │             │
   └──────────┘  rd_mbx     └──────────┘               │             │
-                                                        │             │
+                                                      │             │
   ┌────────────────────────────────────┐  rd_scb_mbx  │             │
   │           fifo_monitor             │ ────────────► │             │
   │  (passive — no mailbox from test)  │               └─────────────┘

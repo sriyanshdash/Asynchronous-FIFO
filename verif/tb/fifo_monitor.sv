@@ -66,14 +66,14 @@ class fifo_monitor #(parameter FIFO_WIDTH = 64);
         forever begin
             @(posedge vif.wrclk);
             if (vif.wrst_n && vif.wr_en && !vif.fifo_full) begin
-                txn            = new();
-                txn.txn_type   = FIFO_WRITE;
-                txn.wr_en      = vif.wr_en;
-                txn.data       = vif.data_in;
-                txn.fifo_full  = vif.fifo_full;
-                txn.fifo_empty = vif.fifo_empty;
+                txn              = new();
+                txn.txn_type     = FIFO_WRITE;
+                txn.wr_en        = vif.wr_en;
+                txn.data         = vif.data_in;
+                txn.fifo_full    = vif.fifo_full;
+                txn.fifo_empty   = vif.fifo_empty;
+                txn.capture_time = $time;
                 wr_scb_mbx.put(txn);
-                txn.display("MON-WR");
             end
         end
     endtask
@@ -97,14 +97,14 @@ class fifo_monitor #(parameter FIFO_WIDTH = 64);
 
             // If the previous cycle was a valid read, data_out is stable now
             if (rd_was_valid) begin
-                txn            = new();
-                txn.txn_type   = FIFO_READ;
-                txn.rd_en      = 1'b1;
-                txn.data_out   = vif.data_out;
-                txn.fifo_full  = vif.fifo_full;
-                txn.fifo_empty = vif.fifo_empty;
+                txn              = new();
+                txn.txn_type     = FIFO_READ;
+                txn.rd_en        = 1'b1;
+                txn.data_out     = vif.data_out;
+                txn.fifo_full    = vif.fifo_full;
+                txn.fifo_empty   = vif.fifo_empty;
+                txn.capture_time = $time;
                 rd_scb_mbx.put(txn);
-                txn.display("MON-RD");
             end
 
             // Update flag: was this clock cycle a valid read initiation?
