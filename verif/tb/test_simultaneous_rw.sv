@@ -13,15 +13,13 @@
 class test_simultaneous_rw #(
     parameter FIFO_WIDTH = 64,
     parameter FIFO_DEPTH = 8
-);
+) extends fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH);
 
-    fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH) base;
-
-    function new(fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH) base);
-        this.base = base;
+    function new(virtual fifo_if #(FIFO_WIDTH) vif, fifo_env #(FIFO_WIDTH) env);
+        super.new(vif, env);
     endfunction
 
-    task run();
+    virtual task run();
         int half_depth;
         int concurrent_txns;
 
@@ -33,8 +31,8 @@ class test_simultaneous_rw #(
 
         // Phase 1: Half-fill the FIFO
         $display("[TEST_SIM_RW] Phase 1: Writing %0d entries to half-fill...", half_depth);
-        base.write_n(half_depth);
-        base.wait_drain(5000);
+        write_n(half_depth);
+        wait_drain(5000);
 
         // Phase 2: Queue writes and reads at the same time
         // The FIFO is half-full, so both sides can run concurrently
@@ -43,11 +41,11 @@ class test_simultaneous_rw #(
                  concurrent_txns, half_depth + concurrent_txns);
 
         fork
-            base.write_n(concurrent_txns);
-            base.read_n(half_depth + concurrent_txns);
+            write_n(concurrent_txns);
+            read_n(half_depth + concurrent_txns);
         join
 
-        base.wait_drain(15000);
+        wait_drain(15000);
 
         $display("[TEST_SIM_RW] Done.");
     endtask

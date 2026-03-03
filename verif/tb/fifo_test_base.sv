@@ -1,8 +1,9 @@
 //=============================================================================
 // File        : fifo_test_base.sv
 // Description : Base test class with reusable helper tasks for all FIFO tests.
-//               Provides write_n(), read_n(), write_data(), wait_drain(),
-//               reset_dut(), and reset_phase() utilities.
+//               All test classes extend this class and override the virtual
+//               run() task. Provides write_n(), read_n(), write_data(),
+//               wait_drain(), reset_dut(), and reset_phase() utilities.
 //=============================================================================
 
 `ifndef FIFO_TEST_BASE_SV
@@ -30,6 +31,13 @@ class fifo_test_base #(
         this.vif = vif;
         this.env = env;
     endfunction
+
+    //-------------------------------------------------------------------------
+    // run() – virtual task overridden by each child test
+    //-------------------------------------------------------------------------
+    virtual task run();
+        $fatal(1, "[TEST_BASE] run() not overridden by child test class");
+    endtask
 
     //-------------------------------------------------------------------------
     // write_n() – queue N write transactions with random data

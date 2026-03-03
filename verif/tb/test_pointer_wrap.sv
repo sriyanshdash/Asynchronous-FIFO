@@ -15,16 +15,15 @@
 class test_pointer_wrap #(
     parameter FIFO_WIDTH = 64,
     parameter FIFO_DEPTH = 8
-);
+) extends fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH);
 
-    fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH) base;
     localparam NUM_CYCLES = 3;
 
-    function new(fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH) base);
-        this.base = base;
+    function new(virtual fifo_if #(FIFO_WIDTH) vif, fifo_env #(FIFO_WIDTH) env);
+        super.new(vif, env);
     endfunction
 
-    task run();
+    virtual task run();
         int cycle;
         $display("");
         $display("[TEST_PTR_WRAP] Starting pointer wrap test (%0d fill-drain cycles)...", NUM_CYCLES);
@@ -33,14 +32,14 @@ class test_pointer_wrap #(
             $display("[TEST_PTR_WRAP] Cycle %0d/%0d: writing %0d, reading %0d...",
                      cycle, NUM_CYCLES, FIFO_DEPTH, FIFO_DEPTH);
 
-            base.write_n(FIFO_DEPTH);
-            base.read_n(FIFO_DEPTH);
-            base.wait_drain(5000);
+            write_n(FIFO_DEPTH);
+            read_n(FIFO_DEPTH);
+            wait_drain(5000);
         end
 
         // Final check: FIFO should be empty
-        repeat (6) @(posedge base.vif.rdclk);
-        if (!base.vif.fifo_empty)
+        repeat (6) @(posedge vif.rdclk);
+        if (!vif.fifo_empty)
             $display("[TEST_PTR_WRAP] FAIL: fifo_empty not asserted after %0d cycles", NUM_CYCLES);
         else
             $display("[TEST_PTR_WRAP] PASS: fifo_empty asserted after all cycles");

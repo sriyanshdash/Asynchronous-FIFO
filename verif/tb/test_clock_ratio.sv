@@ -22,16 +22,15 @@
 class test_clock_ratio #(
     parameter FIFO_WIDTH = 64,
     parameter FIFO_DEPTH = 8
-);
+) extends fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH);
 
-    fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH) base;
     localparam NUM_TXNS = 16;  // 2 full FIFO cycles per scenario
 
-    function new(fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH) base);
-        this.base = base;
+    function new(virtual fifo_if #(FIFO_WIDTH) vif, fifo_env #(FIFO_WIDTH) env);
+        super.new(vif, env);
     endfunction
 
-    task run();
+    virtual task run();
         $display("");
         $display("[TEST_CLK_RATIO] Starting clock ratio test (3 scenarios)...");
 
@@ -44,7 +43,7 @@ class test_clock_ratio #(
         //---------------------------------------------------------------------
         $display("[TEST_CLK_RATIO] Scenario 1: Write-FAST (200MHz) / Read-SLOW (50MHz)");
         set_clocks(2.5, 10.0);
-        base.reset_phase();
+        reset_phase();
         run_fill_drain();
 
         //---------------------------------------------------------------------
@@ -56,7 +55,7 @@ class test_clock_ratio #(
         //---------------------------------------------------------------------
         $display("[TEST_CLK_RATIO] Scenario 2: Write-SLOW (50MHz) / Read-FAST (200MHz)");
         set_clocks(10.0, 2.5);
-        base.reset_phase();
+        reset_phase();
         run_fill_drain();
 
         //---------------------------------------------------------------------
@@ -68,7 +67,7 @@ class test_clock_ratio #(
         //---------------------------------------------------------------------
         $display("[TEST_CLK_RATIO] Scenario 3: Equal frequency (100MHz / 100MHz)");
         set_clocks(5.0, 5.0);
-        base.reset_phase();
+        reset_phase();
         run_fill_drain();
 
         //---------------------------------------------------------------------
@@ -76,7 +75,7 @@ class test_clock_ratio #(
         //---------------------------------------------------------------------
         $display("[TEST_CLK_RATIO] Restoring default clocks (100MHz / 77MHz)...");
         set_clocks(5.0, 6.5);
-        base.reset_phase();
+        reset_phase();
 
         $display("[TEST_CLK_RATIO] Done.");
     endtask
@@ -90,16 +89,16 @@ class test_clock_ratio #(
         $display("[TEST_CLK_RATIO]   wrclk_half=%.1f ns (period=%.1f ns)  rdclk_half=%.1f ns (period=%.1f ns)",
                  wr_half, wr_half*2, rd_half, rd_half*2);
         // Let new clock periods take effect for a few cycles
-        repeat (4) @(posedge base.vif.wrclk);
+        repeat (4) @(posedge vif.wrclk);
     endtask
 
     //=========================================================================
     // run_fill_drain() – write NUM_TXNS, read NUM_TXNS, verify via scoreboard
     //=========================================================================
     task run_fill_drain();
-        base.write_n(NUM_TXNS);
-        base.read_n(NUM_TXNS);
-        base.wait_drain(20000);
+        write_n(NUM_TXNS);
+        read_n(NUM_TXNS);
+        wait_drain(20000);
     endtask
 
 endclass : test_clock_ratio
