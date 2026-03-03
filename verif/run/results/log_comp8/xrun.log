@@ -1,0 +1,204 @@
+xrun: 24.09-s001: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
+TOOL:	xrun	24.09-s001: Started on Mar 03, 2026 at 13:12:41 IST
+xrun
+	+define+DUMP_ON
+	+define+CADENCE
+	-incdir /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/
+	-f /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/rtl/sig_async_fifo_flst.f
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/rtl/synchronizer.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/rtl/fifo_memory.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/rtl/wrptr_handler.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/rtl/rdptr_handler.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/rtl/fifo_top.sv
+	-f /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/sig_async_fifo_tb_flst.f
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_interface.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_transaction.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_driver.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_monitor.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_scoreboard.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_env.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_test_base.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_reset.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_reset_when_empty.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_reset_when_full.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_reset_during_write.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_reset_during_read.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_reset_partial_fill.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_basic.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_fill_drain.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_simultaneous_rw.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_pointer_wrap.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_clock_ratio.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_single_entry.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_full_flag_timing.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_empty_flag_timing.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_almost_full.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_almost_empty.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_alternating_rw.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_burst_write_burst_read.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_data_integrity_patterns.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_fifo_depth_boundary.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_continuous_streaming.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_overflow_underflow.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_write_when_full_data_check.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_read_when_empty_pointer_check.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_simultaneous_reset_write.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_simultaneous_reset_read.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_back_to_back_overflow.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_back_to_back_underflow.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_test_runner.sv
+		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/tb_top.sv
+	-svseed 1234
+	+nowarn_AAMNSD
+	+access+rw
+	-disable_sem2009
+	+sv
+	+timescale+1ns/1ps
+
+   User defined plus("+") options:
+	+timescale+1ns/1ps
+
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/rtl/synchronizer.sv
+	module worklib.synchronizer:sv
+		errors: 0, warnings: 0
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/rtl/fifo_memory.sv
+	module worklib.fifo_mem:sv
+		errors: 0, warnings: 0
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/rtl/wrptr_handler.sv
+	module worklib.wptr_handler:sv
+		errors: 0, warnings: 0
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/rtl/rdptr_handler.sv
+	module worklib.rptr_handler:sv
+		errors: 0, warnings: 0
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/rtl/fifo_top.sv
+	module worklib.asynchronous_fifo:sv
+		errors: 0, warnings: 0
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_interface.sv
+	interface worklib.fifo_if:sv
+		errors: 0, warnings: 0
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_transaction.sv
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_driver.sv
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_monitor.sv
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_scoreboard.sv
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_env.sv
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_test_base.sv
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_reset.sv
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_reset_when_empty.sv
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_reset_when_full.sv
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_reset_during_write.sv
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_reset_during_read.sv
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_reset_partial_fill.sv
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_basic.sv
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_fill_drain.sv
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_simultaneous_rw.sv
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_pointer_wrap.sv
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_clock_ratio.sv
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_single_entry.sv
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_full_flag_timing.sv
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_empty_flag_timing.sv
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_almost_full.sv
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_almost_empty.sv
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_alternating_rw.sv
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_burst_write_burst_read.sv
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_data_integrity_patterns.sv
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_fifo_depth_boundary.sv
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_continuous_streaming.sv
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_overflow_underflow.sv
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_write_when_full_data_check.sv
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_read_when_empty_pointer_check.sv
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_simultaneous_reset_write.sv
+        vif.data_in = 64'hBAD_DATA_BAD_DATA;
+                                          |
+xmvlog: *E,UXEXID (/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_simultaneous_reset_write.sv,22|42): Unexpected identifier 'TA_BAD_DATA' after completed expression.
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_simultaneous_reset_read.sv
+) extends fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH);
+                       |
+xmvlog: *E,SVNOTY (/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_simultaneous_reset_read.sv,8|23): Syntactically this identifier appears to begin a datatype but it does not refer to a visible datatype in the current scope.
+    function new(virtual fifo_if #(FIFO_WIDTH) vif, fifo_env #(FIFO_WIDTH) env);
+                                                             |
+xmvlog: *E,EXPRPA (/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_simultaneous_reset_read.sv,10|61): expecting a right parenthesis (')') [A.2.6(IEEE)].
+    function new(virtual fifo_if #(FIFO_WIDTH) vif, fifo_env #(FIFO_WIDTH) env);
+                                                                              |
+xmvlog: *E,MISEXX (/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_simultaneous_reset_read.sv,10|78): expecting an '=' or '<=' sign in an assignment [9.2(IEEE)].
+        super.new(vif, env);
+                |
+xmvlog: *E,ILLSN (/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_simultaneous_reset_read.sv,11|16): super.new illegal in this context.
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_back_to_back_overflow.sv
+) extends fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH);
+                       |
+xmvlog: *E,SVNOTY (/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_back_to_back_overflow.sv,8|23): Syntactically this identifier appears to begin a datatype but it does not refer to a visible datatype in the current scope.
+    function new(virtual fifo_if #(FIFO_WIDTH) vif, fifo_env #(FIFO_WIDTH) env);
+                                                             |
+xmvlog: *E,EXPRPA (/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_back_to_back_overflow.sv,10|61): expecting a right parenthesis (')') [A.2.6(IEEE)].
+    function new(virtual fifo_if #(FIFO_WIDTH) vif, fifo_env #(FIFO_WIDTH) env);
+                                                                              |
+xmvlog: *E,MISEXX (/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_back_to_back_overflow.sv,10|78): expecting an '=' or '<=' sign in an assignment [9.2(IEEE)].
+        super.new(vif, env);
+                |
+xmvlog: *E,ILLSN (/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_back_to_back_overflow.sv,11|16): super.new illegal in this context.
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_back_to_back_underflow.sv
+) extends fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH);
+                       |
+xmvlog: *E,SVNOTY (/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_back_to_back_underflow.sv,8|23): Syntactically this identifier appears to begin a datatype but it does not refer to a visible datatype in the current scope.
+    function new(virtual fifo_if #(FIFO_WIDTH) vif, fifo_env #(FIFO_WIDTH) env);
+                                                             |
+xmvlog: *E,EXPRPA (/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_back_to_back_underflow.sv,10|61): expecting a right parenthesis (')') [A.2.6(IEEE)].
+    function new(virtual fifo_if #(FIFO_WIDTH) vif, fifo_env #(FIFO_WIDTH) env);
+                                                                              |
+xmvlog: *E,MISEXX (/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_back_to_back_underflow.sv,10|78): expecting an '=' or '<=' sign in an assignment [9.2(IEEE)].
+        super.new(vif, env);
+                |
+xmvlog: *E,ILLSN (/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_back_to_back_underflow.sv,11|16): super.new illegal in this context.
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_test_runner.sv
+    fifo_env #(FIFO_WIDTH)           env;
+           |
+xmvlog: *E,EXPENC (/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_test_runner.sv,64|11): Expecting the keyword 'endclass'.
+    function new(virtual fifo_if #(FIFO_WIDTH) vif);
+               |
+xmvlog: *E,NEWOIC (/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_test_runner.sv,113|15): The class constructor method 'new' is only allowed within a class declaration.
+    function fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH) create_test(string name);
+                            |
+xmvlog: *E,SVNOCS (/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_test_runner.sv,145|28): Class specialization syntax not allowed in method name for out-of-block method declaration.
+    function fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH) create_test(string name);
+                                                                |
+xmvlog: *E,NOTCTF (/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_test_runner.sv,145|64): create_test is not the name of a method (task or function) prototype in the class.
+            "test_reset":                      begin test_reset                      #(FIFO_WIDTH, FIFO_DEPTH) t = new(vif, env); return t; end
+                                                              |
+xmvlog: *E,SVNOTY (/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_test_runner.sv,148|62): Syntactically this identifier appears to begin a datatype but it does not refer to a visible datatype in the current scope.
+            "test_reset":                      begin test_reset                      #(FIFO_WIDTH, FIFO_DEPTH) t = new(vif, env); return t; end
+                                                                                                 |
+xmvlog: *E,EXPRPA (/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_test_runner.sv,148|97): expecting a right parenthesis (')') [9.7.1(IEEE)].
+            "test_reset":                      begin test_reset                      #(FIFO_WIDTH, FIFO_DEPTH) t = new(vif, env); return t; end
+                                                                                                             |
+xmvlog: *E,CSISYX (/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_test_runner.sv,148|109): case item syntax error [9.5(IEEE)].
+            "test_reset_when_empty":           begin test_reset_when_empty           #(FIFO_WIDTH, FIFO_DEPTH) t = new(vif, env); return t; end
+                                  |
+xmvlog: *E,EXPENF (/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_test_runner.sv,149|34): expecting the keyword 'endfunction' [10.3.1(IEEE)].
+        fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH) test;
+                     |
+xmvlog: *E,SVNOTY (/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_test_runner.sv,186|21): Syntactically this identifier appears to begin a datatype but it does not refer to a visible datatype in the current scope.
+        fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH) test;
+                                   |
+xmvlog: *E,EXPRPA (/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_test_runner.sv,186|35): expecting a right parenthesis (')') [9.7.1(IEEE)].
+        fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH) test;
+                                               |
+xmvlog: *E,MISEXX (/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_test_runner.sv,186|47): expecting an '=' or '<=' sign in an assignment [9.2(IEEE)].
+endclass : fifo_test_runner
+       |
+xmvlog: *E,MPANDC (/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_test_runner.sv,258|7): expecting the keyword 'module', 'macromodule', 'primitive', 'connectmodule','connect', 'discipline' or 'nature' [A.1].
+file: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/tb_top.sv
+        fifo_test_runner #(FIFO_WIDTH, FIFO_DEPTH) runner;
+                       |
+xmvlog: *E,SVNOTY (/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/tb_top.sv,108|23): Syntactically this identifier appears to begin a datatype but it does not refer to a visible datatype in the current scope.
+        fifo_test_runner #(FIFO_WIDTH, FIFO_DEPTH) runner;
+                                     |
+xmvlog: *E,EXPRPA (/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/tb_top.sv,108|37): expecting a right parenthesis (')') [9.7.1(IEEE)].
+        fifo_test_runner #(FIFO_WIDTH, FIFO_DEPTH) runner;
+                                                 |
+xmvlog: *E,MISEXX (/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/tb_top.sv,108|49): expecting an '=' or '<=' sign in an assignment [9.2(IEEE)].
+	module worklib.tb_top:sv
+		errors: 3, warnings: 0
+	Total errors/warnings found outside modules and primitives:
+		errors: 25, warnings: 0
+xrun: *E,VLGERR: An error occurred during parsing.  Review the log file for errors with the code *E and fix those identified problems to proceed.  Exiting with code (status 1).
+TOOL:	xrun	24.09-s001: Exiting on Mar 03, 2026 at 13:12:44 IST  (total: 00:00:03)

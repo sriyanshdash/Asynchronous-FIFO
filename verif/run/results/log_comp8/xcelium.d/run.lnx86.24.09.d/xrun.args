@@ -1,0 +1,19 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
++define+DUMP_ON
++define+CADENCE
+-incdir
+/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/
+-f
+/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/rtl/sig_async_fifo_flst.f
+-f
+/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/sig_async_fifo_tb_flst.f
+-svseed
+1234
++nowarn_AAMNSD
++access+rw
+-disable_sem2009
++sv
++timescale+1ns/1ps
