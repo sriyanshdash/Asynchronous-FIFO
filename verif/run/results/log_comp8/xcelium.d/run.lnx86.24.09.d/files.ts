@@ -9,7 +9,7 @@
 1772523462 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_monitor.sv
 1772523462 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_scoreboard.sv
 1772523462 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_env.sv
-1772523462 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_test_base.sv
+1772533276 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_test_base.sv
 1772523462 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_reset.sv
 1772523462 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_reset_when_empty.sv
 1772523462 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_reset_when_full.sv
@@ -20,7 +20,7 @@
 1772523462 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_fill_drain.sv
 1772523462 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_simultaneous_rw.sv
 1772523462 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_pointer_wrap.sv
-1772523462 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_clock_ratio.sv
+1772534519 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_clock_ratio.sv
 1772523462 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_single_entry.sv
 1772523462 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_full_flag_timing.sv
 1772523462 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_empty_flag_timing.sv
@@ -34,9 +34,9 @@
 1772523462 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_overflow_underflow.sv
 1772523462 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_write_when_full_data_check.sv
 1772523462 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_read_when_empty_pointer_check.sv
-1772523462 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_simultaneous_reset_write.sv
+1772533276 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_simultaneous_reset_write.sv
 1772523462 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_simultaneous_reset_read.sv
 1772523462 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_back_to_back_overflow.sv
 1772523462 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_back_to_back_underflow.sv
 1772523462 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_test_runner.sv
-1772523462 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/tb_top.sv
+1772534855 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/tb_top.sv
