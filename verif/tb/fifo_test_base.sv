@@ -85,21 +85,28 @@ class fifo_test_base #(
     //   Also waits extra cycles for the monitor/scoreboard pipeline to flush.
     //-------------------------------------------------------------------------
     task wait_drain(int timeout_ns = 5000);
-        fork
-            begin
-                // Wait for mailboxes to empty
-                wait (env.wr_mbx.num() == 0 && env.rd_mbx.num() == 0);
-                // Extra settling time for driver to finish its current transaction,
-                // monitor pipeline (1-cycle data_out delay), and CDC sync latency
-                repeat (20) @(posedge vif.wrclk);
-                repeat (20) @(posedge vif.rdclk);
-            end
-            begin
-                #(timeout_ns * 1ns);
-                $display("[TEST_BASE] WARNING: wait_drain timed out after %0d ns", timeout_ns);
-            end
-        join_any
-        disable fork;
+        // Outer fork-begin-end-join creates an isolated process context so
+        // that the inner disable fork only kills the timeout/wait branches,
+        // NOT the env's driver, monitor, and scoreboard threads which are
+        // descendants of the initial-block process (IEEE 1800-2017 §9.6.1).
+        fork begin
+            fork
+                begin
+                    // Wait for mailboxes to empty
+                    wait (env.wr_mbx.num() == 0 && env.rd_mbx.num() == 0);
+                    // Extra settling time for driver to finish its current
+                    // transaction, monitor pipeline (1-cycle data_out delay),
+                    // and CDC sync latency
+                    repeat (20) @(posedge vif.wrclk);
+                    repeat (20) @(posedge vif.rdclk);
+                end
+                begin
+                    #(timeout_ns * 1ns);
+                    $display("[TEST_BASE] WARNING: wait_drain timed out after %0d ns", timeout_ns);
+                end
+            join_any
+            disable fork;
+        end join
     endtask
 
     //-------------------------------------------------------------------------

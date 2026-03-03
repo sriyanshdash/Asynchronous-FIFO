@@ -19,7 +19,7 @@ class test_simultaneous_reset_write #(
         vif.wrst_n  = 1'b0;
         vif.rrst_n  = 1'b0;
         vif.wr_en   = 1'b1;
-        vif.data_in = 64'hBAD_DATA_BAD_DATA;
+        vif.data_in = 64'hDEAD_BEEF_DEAD_BEEF;
 
         repeat (5) @(posedge vif.wrclk);
 
