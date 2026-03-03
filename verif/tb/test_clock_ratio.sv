@@ -71,11 +71,10 @@ class test_clock_ratio #(
         run_fill_drain();
 
         //---------------------------------------------------------------------
-        // Restore default clock ratios
+        // Restore default clock ratios (runner handles DUT reset before next test)
         //---------------------------------------------------------------------
         $display("[TEST_CLK_RATIO] Restoring default clocks (100MHz / 77MHz)...");
         set_clocks(5.0, 6.5);
-        reset_phase();
 
         $display("[TEST_CLK_RATIO] Done.");
     endtask
