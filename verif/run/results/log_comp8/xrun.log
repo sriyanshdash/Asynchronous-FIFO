@@ -1,69 +1,7 @@
 xrun: 24.09-s001: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
-TOOL:	xrun	24.09-s001: Started on Mar 03, 2026 at 17:16:51 IST
+TOOL:	xrun	24.09-s001: Started on Mar 05, 2026 at 10:11:20 IST
 xrun
-	+define+DUMP_ON
-	+define+CADENCE
-	-incdir /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/
-	-f /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/rtl/sig_async_fifo_flst.f
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/rtl/synchronizer.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/rtl/fifo_memory.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/rtl/wrptr_handler.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/rtl/rdptr_handler.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/rtl/fifo_top.sv
-	-f /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/sig_async_fifo_tb_flst.f
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_interface.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_transaction.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_driver.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_monitor.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_scoreboard.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_env.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_test_base.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_reset.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_reset_when_empty.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_reset_when_full.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_reset_during_write.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_reset_during_read.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_reset_partial_fill.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_basic.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_fill_drain.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_simultaneous_rw.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_pointer_wrap.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_clock_ratio.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_single_entry.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_full_flag_timing.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_empty_flag_timing.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_almost_full.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_almost_empty.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_alternating_rw.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_burst_write_burst_read.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_data_integrity_patterns.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_fifo_depth_boundary.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_continuous_streaming.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_overflow_underflow.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_write_when_full_data_check.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_read_when_empty_pointer_check.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_simultaneous_reset_write.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_simultaneous_reset_read.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_back_to_back_overflow.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_back_to_back_underflow.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_test_runner.sv
-		/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/tb_top.sv
-	-svseed 1234
-	+nowarn_AAMNSD
-	+access+rw
-	-disable_sem2009
-	+sv
-	+timescale+1ns/1ps
-
-   User defined plus("+") options:
-	+timescale+1ns/1ps
-
-
-Trying to check out license...
-	Xcelium_Single_Core 24.00 - Failed
-	Xcelium_Safety_Sim 24.00 - Failed
-	Xcelium_Safety 24.00 - Failed
-	Xcelium_Multi_Core 24.00 - Failed
-	Xcelium_For_Partners 24.00 - Failed
-xmsim: *F,NOLICN: Unable to checkout license for the simulation. 'lic_error LMF-03005'.
-TOOL:	xrun	24.09-s001: Exiting on Mar 03, 2026 at 17:17:37 IST  (total: 00:00:46)
+	test_clock_ratio
+xrun: *E,FMUK: The type of the file (test_clock_ratio) could not be determined.
+xrun: *E,FILEMIS: Cannot find the provided file test_clock_ratio.
+TOOL:	xrun	24.09-s001: Exiting on Mar 05, 2026 at 10:11:21 IST  (total: 00:00:01)

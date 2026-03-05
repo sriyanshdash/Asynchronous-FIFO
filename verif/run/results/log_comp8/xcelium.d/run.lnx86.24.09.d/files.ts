@@ -39,4 +39,4 @@
 1772523462 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_back_to_back_overflow.sv
 1772523462 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/test_back_to_back_underflow.sv
 1772523462 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/fifo_test_runner.sv
-1772534855 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/tb_top.sv
+1772685066 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb/tb_top.sv
