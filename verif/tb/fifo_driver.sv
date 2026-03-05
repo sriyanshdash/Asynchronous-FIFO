@@ -150,9 +150,20 @@ class fifo_driver #(parameter FIFO_WIDTH = 64);
                 while (wr_mbx.try_peek(txn)) begin
                     if (!txn.wr_en) break;
                     wr_mbx.get(txn);
-                    while (vif.fifo_full) @(posedge vif.wrclk);
-                    @(posedge vif.wrclk); #1;
-                    vif.data_in = txn.data;
+                    if (vif.fifo_full) begin
+                        // Deassert wr_en immediately so the next posedge
+                        // does not see a stale wr_en=1 + old data_in when
+                        // fifo_full eventually drops → prevents duplicate write.
+                        vif.wr_en   = 1'b0;
+                        vif.data_in = '0;
+                        while (vif.fifo_full) @(posedge vif.wrclk);
+                        @(posedge vif.wrclk); #1;
+                        vif.wr_en   = 1'b1;
+                        vif.data_in = txn.data;
+                    end else begin
+                        @(posedge vif.wrclk); #1;
+                        vif.data_in = txn.data;
+                    end
                     fifo_txn_log::wr_drv_times.push_back($time);
                     wr_count++;
                 end
@@ -187,8 +198,17 @@ class fifo_driver #(parameter FIFO_WIDTH = 64);
                 while (rd_mbx.try_peek(txn)) begin
                     if (!txn.rd_en) break;
                     rd_mbx.get(txn);
-                    while (vif.fifo_empty) @(posedge vif.rdclk);
-                    @(posedge vif.rdclk); #1;
+                    if (vif.fifo_empty) begin
+                        // Deassert rd_en immediately so the next posedge
+                        // does not see a stale rd_en=1 when fifo_empty
+                        // drops → prevents duplicate read.
+                        vif.rd_en = 1'b0;
+                        while (vif.fifo_empty) @(posedge vif.rdclk);
+                        @(posedge vif.rdclk); #1;
+                        vif.rd_en = 1'b1;
+                    end else begin
+                        @(posedge vif.rdclk); #1;
+                    end
                     fifo_txn_log::rd_drv_times.push_back($time);
                     rd_count++;
                 end
