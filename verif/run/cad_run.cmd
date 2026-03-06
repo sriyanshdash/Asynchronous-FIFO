@@ -1,6 +1,20 @@
 #!/bin/csh -f
 
 mkdir ${1}
+
+# Usage:
+#   cad_run.cmd <dir>                     -> runs all tests
+#   cad_run.cmd <dir> test_stress         -> runs only the stress test
+#   cad_run.cmd <dir> test_basic          -> runs only test_basic
+#   cad_run.cmd <dir> all                 -> runs all tests (explicit)
+
+# Default TEST_NAME to "all" if $2 is not provided
+if ( "$2" == "" ) then
+    set TEST_NAME = "all"
+else
+    set TEST_NAME = "$2"
+endif
+
 xrun \
 +define+DUMP_ON \
 +define+CADENCE \
@@ -12,6 +26,7 @@ xrun \
 +access+rw \
 -disable_sem2009 \
 +sv \
-+timescale+1ns/1ps \ 
++timescale+1ns/1ps \
++TEST_NAME=${TEST_NAME}
 
 

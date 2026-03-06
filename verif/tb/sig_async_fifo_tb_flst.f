@@ -65,8 +65,11 @@ ${SIG_FIFO_HOME}/verif/tb/test_simultaneous_reset_read.sv
 ${SIG_FIFO_HOME}/verif/tb/test_back_to_back_overflow.sv
 ${SIG_FIFO_HOME}/verif/tb/test_back_to_back_underflow.sv
 
-// ---- 11. Test runner ----
+// ---- 11. Stress test ----
+${SIG_FIFO_HOME}/verif/tb/test_stress.sv
+
+// ---- 12. Test runner ----
 ${SIG_FIFO_HOME}/verif/tb/fifo_test_runner.sv
 
-// ---- 12. TB Top ----
+// ---- 13. TB Top ----
 ${SIG_FIFO_HOME}/verif/tb/tb_top.sv
