@@ -1,7 +1,7 @@
 # Asynchronous FIFO - Design & Verification Documentation
 
 **Project**: Asynchronous FIFO with Gray-Coded Pointer CDC
-**Author**: smishra
+**Author**: sdash
 **Organization**: Marquee Semiconductor Inc
 **Created**: April 2024
 **Design Language**: SystemVerilog

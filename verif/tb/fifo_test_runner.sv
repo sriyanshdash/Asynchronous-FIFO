@@ -53,6 +53,9 @@
 `include "test_back_to_back_overflow.sv"
 `include "test_back_to_back_underflow.sv"
 
+// --- Stress test ---
+`include "test_stress.sv"
+
 class fifo_test_runner #(
     parameter FIFO_WIDTH = 64,
     parameter FIFO_DEPTH = 8
@@ -104,7 +107,9 @@ class fifo_test_runner #(
         "test_simultaneous_reset_write",
         "test_simultaneous_reset_read",
         "test_back_to_back_overflow",
-        "test_back_to_back_underflow"
+        "test_back_to_back_underflow",
+        // Stress
+        "test_stress"
     };
 
     //-------------------------------------------------------------------------
@@ -175,6 +180,8 @@ class fifo_test_runner #(
             "test_simultaneous_reset_read":    begin test_simultaneous_reset_read    #(FIFO_WIDTH, FIFO_DEPTH) t = new(vif, env); return t; end
             "test_back_to_back_overflow":      begin test_back_to_back_overflow      #(FIFO_WIDTH, FIFO_DEPTH) t = new(vif, env); return t; end
             "test_back_to_back_underflow":     begin test_back_to_back_underflow     #(FIFO_WIDTH, FIFO_DEPTH) t = new(vif, env); return t; end
+            // Stress
+            "test_stress":                     begin test_stress                     #(FIFO_WIDTH, FIFO_DEPTH) t = new(vif, env); return t; end
             default:                           return null;
         endcase
     endfunction
