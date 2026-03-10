@@ -43,15 +43,19 @@ class test_overflow_underflow #(
     //=========================================================================
     task test_overflow();
         bit [FIFO_WIDTH-1:0] overflow_data;
+        int wait_cycles;
 
         $display("[TEST_OVF_UNF] --- Overflow Test ---");
 
         // Fill the FIFO to capacity using the normal driver
         write_n(FIFO_DEPTH);
-        wait_drain(5000);
 
-        // Wait for fifo_full to assert
-        repeat (6) @(posedge vif.wrclk);
+        // Poll for fifo_full directly (reliable, unlike wait on mailbox.num())
+        wait_cycles = 0;
+        while (!vif.fifo_full && wait_cycles < 5000) begin
+            @(posedge vif.wrclk);
+            wait_cycles++;
+        end
 
         if (!vif.fifo_full) begin
             $display("[TEST_OVF_UNF] FAIL: FIFO not full after %0d writes (cannot test overflow)", FIFO_DEPTH);
@@ -74,7 +78,17 @@ class test_overflow_underflow #(
         // If the overflow write was correctly ignored, all FIFO_DEPTH reads should match.
         // If it wasn't ignored, data would be corrupted.
         read_n(FIFO_DEPTH);
-        wait_drain(5000);
+
+        // Poll for fifo_empty to confirm all reads completed
+        wait_cycles = 0;
+        while (!vif.fifo_empty && wait_cycles < 5000) begin
+            @(posedge vif.rdclk);
+            wait_cycles++;
+        end
+
+        // Settling time for monitor/scoreboard pipeline to flush
+        repeat (20) @(posedge vif.wrclk);
+        repeat (20) @(posedge vif.rdclk);
 
         $display("[TEST_OVF_UNF] Overflow test complete (scoreboard checks data integrity).");
     endtask
@@ -83,11 +97,17 @@ class test_overflow_underflow #(
     // Underflow test: empty FIFO, force a read, verify no spurious data
     //=========================================================================
     task test_underflow();
+        int wait_cycles;
+
         $display("[TEST_OVF_UNF] --- Underflow Test ---");
 
         // FIFO should be empty after the overflow test reads drained it.
-        // Wait for fifo_empty to assert (CDC latency)
-        repeat (6) @(posedge vif.rdclk);
+        // Poll for fifo_empty to assert (CDC latency)
+        wait_cycles = 0;
+        while (!vif.fifo_empty && wait_cycles < 5000) begin
+            @(posedge vif.rdclk);
+            wait_cycles++;
+        end
 
         if (!vif.fifo_empty) begin
             $display("[TEST_OVF_UNF] FAIL: FIFO not empty before underflow test");
@@ -111,6 +131,10 @@ class test_overflow_underflow #(
         write_n(1);
         read_n(1);
         wait_drain(5000);
+
+        // Extra settling time for monitor/scoreboard pipeline
+        repeat (20) @(posedge vif.wrclk);
+        repeat (20) @(posedge vif.rdclk);
 
         $display("[TEST_OVF_UNF] Underflow test complete.");
     endtask
