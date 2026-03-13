@@ -1,0 +1,251 @@
+// =============================================================================
+// File        : fifo_tb_top.sv
+// Description : Top-level testbench module for the simplified Async FIFO TB.
+//
+//               Responsibilities:
+//                 - Clock generation (wrclk, rdclk)
+//                 - DUT instantiation via interface
+//                 - Initial reset
+//                 - Test runner: creates, runs, and reports on all 9 tests
+//
+// Usage:
+//   Default       : runs all 9 tests
+//   +TEST_NAME=test_basic_rw : runs only the named test
+//
+// Available tests:
+//   test_basic_rw, test_fill_drain_wrap, test_burst_streaming,
+//   test_flag_behavior, test_data_integrity, test_overflow_underflow,
+//   test_reset_scenarios, test_clock_ratio, test_stress
+// =============================================================================
+
+`timescale 1ns/1ps
+
+`include "fifo_interface.sv"
+`include "fifo_transaction.sv"
+`include "fifo_driver.sv"
+`include "fifo_monitor.sv"
+`include "fifo_scoreboard.sv"
+`include "fifo_env.sv"
+`include "fifo_tests.sv"
+
+module fifo_tb_top;
+
+    // =========================================================================
+    //  PARAMETERS
+    // =========================================================================
+    localparam int FIFO_DEPTH = 8;
+    localparam int FIFO_WIDTH = 64;
+
+    // =========================================================================
+    //  CLOCKS
+    //  wrclk = 100 MHz (10 ns), rdclk ~ 77 MHz (13 ns)
+    //  Half-periods are variables so test_clock_ratio can change them at runtime.
+    // =========================================================================
+    logic wrclk, rdclk;
+
+    realtime wrclk_half = 5.0;    // ns (100 MHz)
+    realtime rdclk_half = 6.5;    // ns (~77 MHz)
+
+    initial wrclk = 0;
+    always #(wrclk_half) wrclk = ~wrclk;
+
+    initial rdclk = 0;
+    always #(rdclk_half) rdclk = ~rdclk;
+
+    // =========================================================================
+    //  INTERFACE + DUT
+    // =========================================================================
+    fifo_if #(FIFO_WIDTH) dut_if (.wrclk(wrclk), .rdclk(rdclk));
+
+    asynchronous_fifo #(
+        .FIFO_DEPTH (FIFO_DEPTH),
+        .FIFO_WIDTH (FIFO_WIDTH)
+    ) dut (
+        .wrclk      (dut_if.wrclk),
+        .wrst_n     (dut_if.wrst_n),
+        .rdclk      (dut_if.rdclk),
+        .rrst_n     (dut_if.rrst_n),
+        .wr_en      (dut_if.wr_en),
+        .rd_en      (dut_if.rd_en),
+        .data_in    (dut_if.data_in),
+        .data_out   (dut_if.data_out),
+        .fifo_full  (dut_if.fifo_full),
+        .fifo_empty (dut_if.fifo_empty)
+    );
+
+    // =========================================================================
+    //  INITIAL RESET
+    // =========================================================================
+    initial begin
+        dut_if.wrst_n  = 0;
+        dut_if.rrst_n  = 0;
+        dut_if.wr_en   = 0;
+        dut_if.rd_en   = 0;
+        dut_if.data_in = '0;
+
+        repeat (5) @(posedge wrclk);
+        @(posedge wrclk); #1;
+        dut_if.wrst_n = 1;
+        dut_if.rrst_n = 1;
+    end
+
+    // =========================================================================
+    //  TEST RUNNER
+    // =========================================================================
+
+    // All available test names
+    string all_tests[$] = '{
+        "test_basic_rw",
+        "test_fill_drain_wrap",
+        "test_burst_streaming",
+        "test_flag_behavior",
+        "test_data_integrity",
+        "test_overflow_underflow",
+        "test_reset_scenarios",
+        "test_clock_ratio",
+        "test_stress"
+    };
+
+    // Per-test result tracking
+    string test_names[$];
+    string test_results[$];
+
+    // Environment (shared across all tests)
+    fifo_env #(FIFO_WIDTH) env;
+
+    // --- Factory: create a test by name ---
+    function fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH) create_test(string name);
+        case (name)
+            "test_basic_rw":          begin test_basic_rw          #(FIFO_WIDTH, FIFO_DEPTH) t = new(dut_if, env); return t; end
+            "test_fill_drain_wrap":   begin test_fill_drain_wrap   #(FIFO_WIDTH, FIFO_DEPTH) t = new(dut_if, env); return t; end
+            "test_burst_streaming":   begin test_burst_streaming   #(FIFO_WIDTH, FIFO_DEPTH) t = new(dut_if, env); return t; end
+            "test_flag_behavior":     begin test_flag_behavior     #(FIFO_WIDTH, FIFO_DEPTH) t = new(dut_if, env); return t; end
+            "test_data_integrity":    begin test_data_integrity    #(FIFO_WIDTH, FIFO_DEPTH) t = new(dut_if, env); return t; end
+            "test_overflow_underflow":begin test_overflow_underflow#(FIFO_WIDTH, FIFO_DEPTH) t = new(dut_if, env); return t; end
+            "test_reset_scenarios":   begin test_reset_scenarios   #(FIFO_WIDTH, FIFO_DEPTH) t = new(dut_if, env); return t; end
+            "test_clock_ratio":       begin test_clock_ratio       #(FIFO_WIDTH, FIFO_DEPTH) t = new(dut_if, env); return t; end
+            "test_stress":            begin test_stress             #(FIFO_WIDTH, FIFO_DEPTH) t = new(dut_if, env); return t; end
+            default: return null;
+        endcase
+    endfunction
+
+    // --- Run one test ---
+    task run_one_test(string name);
+        fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH) test;
+
+        $display("");
+        $display("  +----------------------------------------------------------------------+");
+        $display("  |  START: %-60s|", name);
+        $display("  +----------------------------------------------------------------------+");
+
+        test = create_test(name);
+        if (test == null) begin
+            $display("  ERROR: Unknown test '%s'", name);
+            test_names.push_back(name);
+            test_results.push_back("UNKNOWN");
+            return;
+        end
+
+        // Reset between tests (skip for the very first one — initial reset handles it)
+        if (test_names.size() > 0)
+            test.reset_phase();
+
+        test.run();
+        env.scb.report(name);
+
+        test_names.push_back(name);
+        if (env.scb.is_pass())
+            test_results.push_back("PASS");
+        else
+            test_results.push_back("FAIL");
+
+        $display("  +----------------------------------------------------------------------+");
+        $display("  |  DONE:  %-52s [%4s]  |", name, test_results[test_results.size()-1]);
+        $display("  +----------------------------------------------------------------------+");
+    endtask
+
+    // --- Print final summary ---
+    function void print_summary();
+        int num_pass = 0;
+        int num_fail = 0;
+
+        $display("");
+        $display("");
+        $display("  ########################################################################");
+        $display("                         FINAL TEST SUMMARY                               ");
+        $display("  ########################################################################");
+        $display("  %-4s  %-35s  %-6s", "#", "Test Name", "Result");
+        $display("  %-4s  %-35s  %-6s", "----", "-----------------------------------", "------");
+
+        for (int i = 0; i < test_names.size(); i++) begin
+            $display("  %-4d  %-35s  %-6s", i+1, test_names[i], test_results[i]);
+            if (test_results[i] == "PASS") num_pass++;
+            else num_fail++;
+        end
+
+        $display("  ----------------------------------------------------------------------");
+        $display("  Total: %0d tests  |  %0d PASSED  |  %0d FAILED",
+                 test_names.size(), num_pass, num_fail);
+        $display("  ----------------------------------------------------------------------");
+        if (num_fail == 0)
+            $display("  OVERALL RESULT  >>  ** ALL TESTS PASSED **");
+        else
+            $display("  OVERALL RESULT  >>  ** SOME TESTS FAILED **");
+        $display("  ########################################################################");
+        $display("");
+    endfunction
+
+    // --- Main execution ---
+    initial begin
+        string test_name;
+
+        $display("");
+        $display("  ########################################################################");
+        $display("    ASYNC FIFO — SIMPLIFIED TESTBENCH");
+        $display("    WIDTH=%0d  DEPTH=%0d", FIFO_WIDTH, FIFO_DEPTH);
+        $display("  ########################################################################");
+
+        if (!$value$plusargs("TEST_NAME=%s", test_name))
+            test_name = "all";
+
+        // Wait for initial reset to complete
+        wait (dut_if.wrst_n === 1 && dut_if.rrst_n === 1);
+        @(posedge wrclk); #1;
+
+        // Create environment and start components
+        env = new(dut_if);
+        env.run();
+
+        $display("  Running: %s", test_name);
+
+        if (test_name == "all") begin
+            foreach (all_tests[i])
+                run_one_test(all_tests[i]);
+        end else begin
+            run_one_test(test_name);
+        end
+
+        print_summary();
+        $finish;
+    end
+
+    // =========================================================================
+    //  WAVEFORM DUMP
+    // =========================================================================
+    initial begin
+        `ifdef DUMP_ON
+            $dumpfile("fifo_tb_simple.vcd");
+            $dumpvars(0, fifo_tb_top);
+        `endif
+    end
+
+    `ifdef DUMP_ON
+        `ifdef CADENCE
+            initial begin
+                $shm_open("./fifo_tb_simple.shm");
+                $shm_probe("ASM");
+            end
+        `endif
+    `endif
+
+endmodule : fifo_tb_top
