@@ -93,19 +93,6 @@ module fifo_tb_top;
     //  TEST RUNNER
     // =========================================================================
 
-    // All available test names
-    string all_tests[$] = '{
-        "test_basic_rw",
-        "test_fill_drain_wrap",
-        "test_burst_streaming",
-        "test_flag_behavior",
-        "test_data_integrity",
-        "test_overflow_underflow",
-        "test_reset_scenarios",
-        "test_clock_ratio",
-        "test_stress"
-    };
-
     // Per-test result tracking
     string test_names[$];
     string test_results[$];
@@ -113,33 +100,41 @@ module fifo_tb_top;
     // Environment (shared across all tests)
     fifo_env #(FIFO_WIDTH) env;
 
-    // --- Factory: create a test by name ---
-    function fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH) create_test(string name);
-        case (name)
-            "test_basic_rw":          begin test_basic_rw          #(FIFO_WIDTH, FIFO_DEPTH) t = new(dut_if, env); return t; end
-            "test_fill_drain_wrap":   begin test_fill_drain_wrap   #(FIFO_WIDTH, FIFO_DEPTH) t = new(dut_if, env); return t; end
-            "test_burst_streaming":   begin test_burst_streaming   #(FIFO_WIDTH, FIFO_DEPTH) t = new(dut_if, env); return t; end
-            "test_flag_behavior":     begin test_flag_behavior     #(FIFO_WIDTH, FIFO_DEPTH) t = new(dut_if, env); return t; end
-            "test_data_integrity":    begin test_data_integrity    #(FIFO_WIDTH, FIFO_DEPTH) t = new(dut_if, env); return t; end
-            "test_overflow_underflow":begin test_overflow_underflow#(FIFO_WIDTH, FIFO_DEPTH) t = new(dut_if, env); return t; end
-            "test_reset_scenarios":   begin test_reset_scenarios   #(FIFO_WIDTH, FIFO_DEPTH) t = new(dut_if, env); return t; end
-            "test_clock_ratio":       begin test_clock_ratio       #(FIFO_WIDTH, FIFO_DEPTH) t = new(dut_if, env); return t; end
-            "test_stress":            begin test_stress             #(FIFO_WIDTH, FIFO_DEPTH) t = new(dut_if, env); return t; end
-            default: return null;
-        endcase
-    endfunction
-
     // --- Run one test ---
+    // Creates the test object, resets between tests, runs, and checks result.
     task run_one_test(string name);
-        fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH) test;
+        // Declare one handle per test type (avoids class specialization in case)
+        test_basic_rw          #(FIFO_WIDTH, FIFO_DEPTH) t1;
+        test_fill_drain_wrap   #(FIFO_WIDTH, FIFO_DEPTH) t2;
+        test_burst_streaming   #(FIFO_WIDTH, FIFO_DEPTH) t3;
+        test_flag_behavior     #(FIFO_WIDTH, FIFO_DEPTH) t4;
+        test_data_integrity    #(FIFO_WIDTH, FIFO_DEPTH) t5;
+        test_overflow_underflow#(FIFO_WIDTH, FIFO_DEPTH) t6;
+        test_reset_scenarios   #(FIFO_WIDTH, FIFO_DEPTH) t7;
+        test_clock_ratio       #(FIFO_WIDTH, FIFO_DEPTH) t8;
+        test_stress            #(FIFO_WIDTH, FIFO_DEPTH) t9;
+        fifo_test_base         #(FIFO_WIDTH, FIFO_DEPTH) test;
+        bit found;
 
         $display("");
         $display("  +----------------------------------------------------------------------+");
         $display("  |  START: %-60s|", name);
         $display("  +----------------------------------------------------------------------+");
 
-        test = create_test(name);
-        if (test == null) begin
+        // Factory: create the right test object based on name
+        found = 1;
+        if      (name == "test_basic_rw")           begin t1 = new(dut_if, env); test = t1; end
+        else if (name == "test_fill_drain_wrap")     begin t2 = new(dut_if, env); test = t2; end
+        else if (name == "test_burst_streaming")     begin t3 = new(dut_if, env); test = t3; end
+        else if (name == "test_flag_behavior")       begin t4 = new(dut_if, env); test = t4; end
+        else if (name == "test_data_integrity")      begin t5 = new(dut_if, env); test = t5; end
+        else if (name == "test_overflow_underflow")  begin t6 = new(dut_if, env); test = t6; end
+        else if (name == "test_reset_scenarios")     begin t7 = new(dut_if, env); test = t7; end
+        else if (name == "test_clock_ratio")         begin t8 = new(dut_if, env); test = t8; end
+        else if (name == "test_stress")              begin t9 = new(dut_if, env); test = t9; end
+        else                                         found = 0;
+
+        if (!found) begin
             $display("  ERROR: Unknown test '%s'", name);
             test_names.push_back(name);
             test_results.push_back("UNKNOWN");
@@ -166,8 +161,10 @@ module fifo_tb_top;
 
     // --- Print final summary ---
     function void print_summary();
-        int num_pass = 0;
-        int num_fail = 0;
+        int num_pass;
+        int num_fail;
+        num_pass = 0;
+        num_fail = 0;
 
         $display("");
         $display("");
@@ -198,10 +195,21 @@ module fifo_tb_top;
     // --- Main execution ---
     initial begin
         string test_name;
+        string all_tests[9];
+
+        all_tests[0] = "test_basic_rw";
+        all_tests[1] = "test_fill_drain_wrap";
+        all_tests[2] = "test_burst_streaming";
+        all_tests[3] = "test_flag_behavior";
+        all_tests[4] = "test_data_integrity";
+        all_tests[5] = "test_overflow_underflow";
+        all_tests[6] = "test_reset_scenarios";
+        all_tests[7] = "test_clock_ratio";
+        all_tests[8] = "test_stress";
 
         $display("");
         $display("  ########################################################################");
-        $display("    ASYNC FIFO — SIMPLIFIED TESTBENCH");
+        $display("    ASYNC FIFO - SIMPLIFIED TESTBENCH");
         $display("    WIDTH=%0d  DEPTH=%0d", FIFO_WIDTH, FIFO_DEPTH);
         $display("  ########################################################################");
 
@@ -219,7 +227,7 @@ module fifo_tb_top;
         $display("  Running: %s", test_name);
 
         if (test_name == "all") begin
-            foreach (all_tests[i])
+            for (int i = 0; i < 9; i++)
                 run_one_test(all_tests[i]);
         end else begin
             run_one_test(test_name);

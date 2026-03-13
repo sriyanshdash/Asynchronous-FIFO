@@ -137,7 +137,8 @@ class test_basic_rw #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
     extends fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH);
 
     function new(virtual fifo_if #(FIFO_WIDTH) vif, fifo_env #(FIFO_WIDTH) env);
-        super.new(vif, env);
+        this.vif = vif;
+        this.env = env;
     endfunction
 
     task run();
@@ -172,7 +173,8 @@ class test_fill_drain_wrap #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8
     extends fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH);
 
     function new(virtual fifo_if #(FIFO_WIDTH) vif, fifo_env #(FIFO_WIDTH) env);
-        super.new(vif, env);
+        this.vif = vif;
+        this.env = env;
     endfunction
 
     task run();
@@ -219,7 +221,8 @@ class test_burst_streaming #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8
     extends fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH);
 
     function new(virtual fifo_if #(FIFO_WIDTH) vif, fifo_env #(FIFO_WIDTH) env);
-        super.new(vif, env);
+        this.vif = vif;
+        this.env = env;
     endfunction
 
     task run();
@@ -263,7 +266,8 @@ class test_flag_behavior #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
     extends fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH);
 
     function new(virtual fifo_if #(FIFO_WIDTH) vif, fifo_env #(FIFO_WIDTH) env);
-        super.new(vif, env);
+        this.vif = vif;
+        this.env = env;
     endfunction
 
     task run();
@@ -321,7 +325,8 @@ class test_data_integrity #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
     extends fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH);
 
     function new(virtual fifo_if #(FIFO_WIDTH) vif, fifo_env #(FIFO_WIDTH) env);
-        super.new(vif, env);
+        this.vif = vif;
+        this.env = env;
     endfunction
 
     task run();
@@ -355,7 +360,8 @@ class test_overflow_underflow #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH 
     extends fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH);
 
     function new(virtual fifo_if #(FIFO_WIDTH) vif, fifo_env #(FIFO_WIDTH) env);
-        super.new(vif, env);
+        this.vif = vif;
+        this.env = env;
     endfunction
 
     task run();
@@ -367,7 +373,7 @@ class test_overflow_underflow #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH 
         // Force a write directly on VIF while full
         @(posedge vif.wrclk); #1;
         vif.wr_en   = 1;
-        vif.data_in = 64'hBAD_DATA_0000_0001;
+        vif.data_in = 64'hBADD_A1A0_0000_0001;
         @(posedge vif.wrclk); #1;
         vif.wr_en   = 0;
         vif.data_in = '0;
@@ -431,7 +437,8 @@ class test_reset_scenarios #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8
     extends fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH);
 
     function new(virtual fifo_if #(FIFO_WIDTH) vif, fifo_env #(FIFO_WIDTH) env);
-        super.new(vif, env);
+        this.vif = vif;
+        this.env = env;
     endfunction
 
     task run();
@@ -455,7 +462,7 @@ class test_reset_scenarios #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8
         check_flag("fifo_empty after full-reset", vif.fifo_empty, 1);
         check_flag("fifo_full after full-reset", vif.fifo_full, 0);
         // Write new data and read back to confirm old data is gone
-        write_data(64'hFRESH_0000_0001);
+        write_data(64'hF0E5_0000_0000_0001);
         read_n(1);
         wait_drain();
 
@@ -473,7 +480,7 @@ class test_reset_scenarios #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8
         $display("  --- Part D: Reset during active write ---");
         @(posedge vif.wrclk); #1;
         vif.wr_en   = 1;
-        vif.data_in = 64'hDURING_WR_0001;
+        vif.data_in = 64'hD01C_0000_0000_0001;
         // Slam reset
         vif.wrst_n  = 0;
         vif.rrst_n  = 0;
@@ -515,7 +522,7 @@ class test_reset_scenarios #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8
         vif.wrst_n  = 0;
         vif.rrst_n  = 0;
         vif.wr_en   = 1;
-        vif.data_in = 64'hSIMUL_WR_0001;
+        vif.data_in = 64'h5100_0000_0000_0001;
         repeat (5) @(posedge vif.wrclk);
         vif.wr_en   = 0;
         vif.data_in = '0;
@@ -559,7 +566,8 @@ class test_clock_ratio #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
     extends fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH);
 
     function new(virtual fifo_if #(FIFO_WIDTH) vif, fifo_env #(FIFO_WIDTH) env);
-        super.new(vif, env);
+        this.vif = vif;
+        this.env = env;
     endfunction
 
     task run();
@@ -609,7 +617,8 @@ class test_stress #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
     extends fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH);
 
     function new(virtual fifo_if #(FIFO_WIDTH) vif, fifo_env #(FIFO_WIDTH) env);
-        super.new(vif, env);
+        this.vif = vif;
+        this.env = env;
     endfunction
 
     task run();
@@ -660,7 +669,7 @@ class test_stress #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
                     // Overflow write (ignored by DUT)
                     @(posedge vif.wrclk); #1;
                     vif.wr_en   = 1;
-                    vif.data_in = 64'hSTRE_SS00_OVER_FLOW;
+                    vif.data_in = 64'h5700_5500_00E0_F100;
                     @(posedge vif.wrclk); #1;
                     vif.wr_en   = 0;
                     vif.data_in = '0;
