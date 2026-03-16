@@ -56,11 +56,15 @@ class fifo_env #(parameter FIFO_WIDTH = 64);
         join_none
     endtask
 
-    // Reset between tests — drain mailboxes and clear scoreboard
+    // Reset between tests — drain ALL mailboxes and clear scoreboard
     function void reset();
         fifo_transaction #(FIFO_WIDTH) tmp;
+        // Drain test → driver mailboxes
         while (wr_mbx.try_get(tmp));
         while (rd_mbx.try_get(tmp));
+        // Drain monitor → scoreboard mailboxes (stale captures)
+        while (wr_scb_mbx.try_get(tmp));
+        while (rd_scb_mbx.try_get(tmp));
         scb.reset();
     endfunction
 

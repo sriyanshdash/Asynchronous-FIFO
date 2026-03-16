@@ -115,9 +115,16 @@ class fifo_test_base #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8);
     endtask
 
     // --- Reset DUT + clear env state (call between tests) ---
+    // Step 1: Drain driver mailboxes so no NEW work is picked up.
+    // Step 2: Wait for any in-flight driver operations to finish.
+    // Step 3: Reset the DUT (pointers, flags, memory).
+    // Step 4: Drain all mailboxes again (monitor may have captured stale ops).
     task reset_phase();
-        reset_dut();
-        env.reset();
+        env.reset();                            // drain mailboxes
+        repeat (20) @(posedge vif.wrclk);       // let in-flight writes finish
+        repeat (20) @(posedge vif.rdclk);       // let in-flight reads finish
+        reset_dut();                            // reset DUT
+        env.reset();                            // clean up any stale monitor captures
     endtask
 
     // --- Check a flag value and report ---
