@@ -8,6 +8,6 @@
 1773393049 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_driver.sv
 1773393049 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_monitor.sv
 1773393049 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_scoreboard.sv
-1773393049 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_env.sv
-1773640710 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv
+1773641788 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_env.sv
+1773641788 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv
 1773640710 /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tb_top.sv
