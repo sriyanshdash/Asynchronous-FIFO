@@ -31,7 +31,11 @@ class fifo_test_base #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8);
     fifo_env #(FIFO_WIDTH) env;
     virtual fifo_if #(FIFO_WIDTH) vif;
 
-    function new(virtual fifo_if #(FIFO_WIDTH) vif, fifo_env #(FIFO_WIDTH) env);
+    function new();
+    endfunction
+
+    // Call this right after new() to set handles
+    function void init(virtual fifo_if #(FIFO_WIDTH) vif, fifo_env #(FIFO_WIDTH) env);
         this.vif = vif;
         this.env = env;
     endfunction
@@ -136,9 +140,7 @@ endclass : fifo_test_base
 class test_basic_rw #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
     extends fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH);
 
-    function new(virtual fifo_if #(FIFO_WIDTH) vif, fifo_env #(FIFO_WIDTH) env);
-        this.vif = vif;
-        this.env = env;
+    function new();
     endfunction
 
     task run();
@@ -172,9 +174,7 @@ endclass : test_basic_rw
 class test_fill_drain_wrap #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
     extends fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH);
 
-    function new(virtual fifo_if #(FIFO_WIDTH) vif, fifo_env #(FIFO_WIDTH) env);
-        this.vif = vif;
-        this.env = env;
+    function new();
     endfunction
 
     task run();
@@ -220,9 +220,7 @@ endclass : test_fill_drain_wrap
 class test_burst_streaming #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
     extends fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH);
 
-    function new(virtual fifo_if #(FIFO_WIDTH) vif, fifo_env #(FIFO_WIDTH) env);
-        this.vif = vif;
-        this.env = env;
+    function new();
     endfunction
 
     task run();
@@ -265,9 +263,7 @@ endclass : test_burst_streaming
 class test_flag_behavior #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
     extends fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH);
 
-    function new(virtual fifo_if #(FIFO_WIDTH) vif, fifo_env #(FIFO_WIDTH) env);
-        this.vif = vif;
-        this.env = env;
+    function new();
     endfunction
 
     task run();
@@ -324,9 +320,7 @@ endclass : test_flag_behavior
 class test_data_integrity #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
     extends fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH);
 
-    function new(virtual fifo_if #(FIFO_WIDTH) vif, fifo_env #(FIFO_WIDTH) env);
-        this.vif = vif;
-        this.env = env;
+    function new();
     endfunction
 
     task run();
@@ -359,9 +353,7 @@ endclass : test_data_integrity
 class test_overflow_underflow #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
     extends fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH);
 
-    function new(virtual fifo_if #(FIFO_WIDTH) vif, fifo_env #(FIFO_WIDTH) env);
-        this.vif = vif;
-        this.env = env;
+    function new();
     endfunction
 
     task run();
@@ -436,9 +428,7 @@ endclass : test_overflow_underflow
 class test_reset_scenarios #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
     extends fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH);
 
-    function new(virtual fifo_if #(FIFO_WIDTH) vif, fifo_env #(FIFO_WIDTH) env);
-        this.vif = vif;
-        this.env = env;
+    function new();
     endfunction
 
     task run();
@@ -565,9 +555,7 @@ endclass : test_reset_scenarios
 class test_clock_ratio #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
     extends fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH);
 
-    function new(virtual fifo_if #(FIFO_WIDTH) vif, fifo_env #(FIFO_WIDTH) env);
-        this.vif = vif;
-        this.env = env;
+    function new();
     endfunction
 
     task run();
@@ -616,9 +604,7 @@ endclass : test_clock_ratio
 class test_stress #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
     extends fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH);
 
-    function new(virtual fifo_if #(FIFO_WIDTH) vif, fifo_env #(FIFO_WIDTH) env);
-        this.vif = vif;
-        this.env = env;
+    function new();
     endfunction
 
     task run();

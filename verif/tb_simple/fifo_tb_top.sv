@@ -123,15 +123,15 @@ module fifo_tb_top;
 
         // Factory: create the right test object based on name
         found = 1;
-        if      (name == "test_basic_rw")           begin t1 = new(dut_if, env); test = t1; end
-        else if (name == "test_fill_drain_wrap")     begin t2 = new(dut_if, env); test = t2; end
-        else if (name == "test_burst_streaming")     begin t3 = new(dut_if, env); test = t3; end
-        else if (name == "test_flag_behavior")       begin t4 = new(dut_if, env); test = t4; end
-        else if (name == "test_data_integrity")      begin t5 = new(dut_if, env); test = t5; end
-        else if (name == "test_overflow_underflow")  begin t6 = new(dut_if, env); test = t6; end
-        else if (name == "test_reset_scenarios")     begin t7 = new(dut_if, env); test = t7; end
-        else if (name == "test_clock_ratio")         begin t8 = new(dut_if, env); test = t8; end
-        else if (name == "test_stress")              begin t9 = new(dut_if, env); test = t9; end
+        if      (name == "test_basic_rw")           begin t1 = new(); t1.init(dut_if, env); test = t1; end
+        else if (name == "test_fill_drain_wrap")     begin t2 = new(); t2.init(dut_if, env); test = t2; end
+        else if (name == "test_burst_streaming")     begin t3 = new(); t3.init(dut_if, env); test = t3; end
+        else if (name == "test_flag_behavior")       begin t4 = new(); t4.init(dut_if, env); test = t4; end
+        else if (name == "test_data_integrity")      begin t5 = new(); t5.init(dut_if, env); test = t5; end
+        else if (name == "test_overflow_underflow")  begin t6 = new(); t6.init(dut_if, env); test = t6; end
+        else if (name == "test_reset_scenarios")     begin t7 = new(); t7.init(dut_if, env); test = t7; end
+        else if (name == "test_clock_ratio")         begin t8 = new(); t8.init(dut_if, env); test = t8; end
+        else if (name == "test_stress")              begin t9 = new(); t9.init(dut_if, env); test = t9; end
         else                                         found = 0;
 
         if (!found) begin
