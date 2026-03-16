@@ -29,6 +29,10 @@ class fifo_driver #(parameter FIFO_WIDTH = 64);
     int wr_count = 0;
     int rd_count = 0;
 
+    // Flush flag — when set, driver discards in-flight transactions
+    // and returns to idle. Used during reset between tests.
+    bit flush = 0;
+
     // Constructor — takes interface and mailbox handles
     function new(
         virtual fifo_if #(FIFO_WIDTH)             vif,
@@ -64,9 +68,17 @@ class fifo_driver #(parameter FIFO_WIDTH = 64);
             // Wait for a transaction from the test
             wr_mbx.get(txn);
 
+            // If flush is active, discard this transaction
+            if (flush) begin
+                vif.wr_en   = 0;
+                vif.data_in = '0;
+                continue;
+            end
+
             if (txn.wr_en) begin
                 // Wait until FIFO has space
-                while (vif.fifo_full) @(posedge vif.wrclk);
+                while (vif.fifo_full && !flush) @(posedge vif.wrclk);
+                if (flush) begin vif.wr_en = 0; vif.data_in = '0; continue; end
 
                 // Drive the write: #1 after edge avoids delta races
                 @(posedge vif.wrclk); #1;
@@ -76,16 +88,16 @@ class fifo_driver #(parameter FIFO_WIDTH = 64);
 
                 // Check for back-to-back writes (burst mode)
                 // Keep wr_en high if next transaction is also a write
-                while (wr_mbx.try_peek(txn)) begin
+                while (wr_mbx.try_peek(txn) && !flush) begin
                     if (!txn.wr_en) break;   // Next one isn't a write, stop burst
                     wr_mbx.get(txn);         // Consume it
 
                     if (vif.fifo_full) begin
                         // FIFO became full mid-burst — deassert immediately
-                        // to prevent stale data from being written
                         vif.wr_en   = 0;
                         vif.data_in = '0;
-                        while (vif.fifo_full) @(posedge vif.wrclk);
+                        while (vif.fifo_full && !flush) @(posedge vif.wrclk);
+                        if (flush) begin vif.wr_en = 0; vif.data_in = '0; continue; end
                         @(posedge vif.wrclk); #1;
                         vif.wr_en   = 1;
                         vif.data_in = txn.data;
@@ -113,22 +125,30 @@ class fifo_driver #(parameter FIFO_WIDTH = 64);
         forever begin
             rd_mbx.get(txn);
 
+            // If flush is active, discard this transaction
+            if (flush) begin
+                vif.rd_en = 0;
+                continue;
+            end
+
             if (txn.rd_en) begin
                 // Wait until FIFO has data
-                while (vif.fifo_empty) @(posedge vif.rdclk);
+                while (vif.fifo_empty && !flush) @(posedge vif.rdclk);
+                if (flush) begin vif.rd_en = 0; continue; end
 
                 @(posedge vif.rdclk); #1;
                 vif.rd_en = 1;
                 rd_count++;
 
                 // Check for back-to-back reads (burst mode)
-                while (rd_mbx.try_peek(txn)) begin
+                while (rd_mbx.try_peek(txn) && !flush) begin
                     if (!txn.rd_en) break;
                     rd_mbx.get(txn);
 
                     if (vif.fifo_empty) begin
                         vif.rd_en = 0;
-                        while (vif.fifo_empty) @(posedge vif.rdclk);
+                        while (vif.fifo_empty && !flush) @(posedge vif.rdclk);
+                        if (flush) begin vif.rd_en = 0; continue; end
                         @(posedge vif.rdclk); #1;
                         vif.rd_en = 1;
                     end else begin
