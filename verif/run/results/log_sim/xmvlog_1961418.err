@@ -1,0 +1,493 @@
+csi-xmvlog - CSI: Command line:
+xmvlog
+    -f /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/run/results/log_sim/xcelium.d/run.lnx86.24.09.d/xmvlog.args
+        -XLMODE ./xcelium.d/run.lnx86.24.09.d
+        -RUNMODE
+        -DEFINE DUMP_ON
+        -DEFINE CADENCE
+        -INCDIR /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/
+        /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/rtl/synchronizer.sv
+        /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/rtl/fifo_memory.sv
+        /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/rtl/wrptr_handler.sv
+        /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/rtl/rdptr_handler.sv
+        /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/rtl/fifo_top.sv
+        /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_interface.sv
+        /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_transaction.sv
+        /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_driver.sv
+        /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_monitor.sv
+        /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_scoreboard.sv
+        /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_env.sv
+        /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv
+        /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tb_top.sv
+        -NOWARN _AAMNSD
+        -sv
+        -CDSLIB ./xcelium.d/run.lnx86.24.09.d/cdsrun.lib
+        -HDLVAR ./xcelium.d/run.lnx86.24.09.d/hdlrun.var
+        -no_analogsolver
+        -MESSAGES
+        -UPDATE
+        -XLLIBSTORE ./xcelium.d/run.lnx86.24.09.d/xllibs
+        -ALLOWUNBOUND
+    -CHECK_VERSION TOOL:	xrun	24.09-s001
+    -LOG_FD 4
+
+csi-xmvlog - CSI: *F,XMERROR_0860: $unit reference into unsupported scope
+Additional info:
+TOOL:	xmvlog	24.09-s001 (CL: 684441 ), mqcomp8, Linux 4.18.0-553.44.1.el8_10.x86_64 #1 SMP Wed Mar 5 10:48:41 EST 2025 x86_64
+
+csi-xmvlog - CSI: Cadence Support Investigation, recording details
+Verilog Syntax Tree: task declaration (VST_D_TASK) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 146, position 11
+	Scope: $unit_0x4a35e56e::test_basic_rw::run
+	Decompile: run
+	Source  :     task run();
+	Position:            ^
+Verilog Syntax Tree: register declaration (VST_D_REG) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 140, position 18
+	Scope: $unit_0x4a35e56e::test_basic_rw::set_randstate
+	Decompile: string state
+	Source  : class test_basic_rw #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
+	Position:                   ^
+Verilog Syntax Tree: task declaration (VST_D_TASK) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 140, position 18
+	Scope: $unit_0x4a35e56e::test_basic_rw::set_randstate
+	Decompile: set_randstate
+	Source  : class test_basic_rw #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
+	Position:                   ^
+Verilog Syntax Tree: indexed vector type (VST_T_INDEXED_VEC) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	Decompile: byte
+Verilog Syntax Tree: string type (VST_T_STRING) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	Scope: $unit_0x4a35e56e::test_basic_rw::set_randstate
+	Decompile: string
+Intermediate File: string (IF_STRING) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	Decompile: state
+Verilog Syntax Tree: null statement (VST_S_NULL) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 140, position 18
+	Scope: $unit_0x4a35e56e::test_basic_rw::set_randstate
+	Decompile: null statement
+	Source  : class test_basic_rw #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
+	Position:                   ^
+Verilog Syntax Tree: list declaration (VST_VD_LIST) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	Decompile: string state
+Intermediate File: string (IF_STRING) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	Decompile: set_randstate
+Verilog Syntax Tree: class declaration (VST_D_CLASS) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 140, position 18
+	Scope: $unit_0x4a35e56e::test_basic_rw
+	Decompile: $unit_0x4a35e56e::test_basic_rw#(FIFO_WIDTH,FIFO_DEPTH)
+	Source  : class test_basic_rw #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
+	Position:                   ^
+Verilog Syntax Tree: function declaration (VST_D_FUNCTION) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 140, position 18
+	Scope: $unit_0x4a35e56e::test_basic_rw::randomize
+	Decompile: int randomize
+	Source  : class test_basic_rw #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
+	Position:                   ^
+Verilog Syntax Tree: task declaration (VST_D_TASK) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 143, position 15
+	Scope: $unit_0x4a35e56e::test_basic_rw::new
+	Decompile: new
+	Source  :     function new();
+	Position:                ^
+Verilog Syntax Tree: register declaration (VST_D_REG) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 140, position 18
+	Scope: $unit_0x4a35e56e::test_basic_rw::get_randstate
+	Decompile: string get_randstate
+	Source  : class test_basic_rw #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
+	Position:                   ^
+Verilog Syntax Tree: function declaration (VST_D_FUNCTION) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 140, position 18
+	Scope: $unit_0x4a35e56e::test_basic_rw::get_randstate
+	Decompile: string get_randstate
+	Source  : class test_basic_rw #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
+	Position:                   ^
+Verilog Syntax Tree: string type (VST_T_STRING) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	Scope: $unit_0x4a35e56e::test_basic_rw::get_randstate
+	Decompile: string
+Intermediate File: string (IF_STRING) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	Decompile: get_randstate
+Verilog Syntax Tree: null statement (VST_S_NULL) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 140, position 18
+	Scope: $unit_0x4a35e56e::test_basic_rw::get_randstate
+	Decompile: null statement
+	Source  : class test_basic_rw #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
+	Position:                   ^
+Verilog Syntax Tree: string type (VST_T_STRING) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	Scope: $unit_0x4a35e56e::test_basic_rw
+	Decompile: string
+Verilog Syntax Tree: task declaration (VST_D_TASK) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 140, position 18
+	Scope: $unit_0x4a35e56e::test_basic_rw::srandom
+	Decompile: srandom
+	Source  : class test_basic_rw #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
+	Position:                   ^
+Verilog Syntax Tree: register declaration (VST_D_REG) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 140, position 18
+	Scope: $unit_0x4a35e56e::test_basic_rw::srandom
+	Decompile: int seed
+	Source  : class test_basic_rw #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
+	Position:                   ^
+Verilog Syntax Tree: indexed vector type (VST_T_INDEXED_VEC) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	Decompile: int
+Intermediate File: string (IF_STRING) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	Decompile: seed
+Verilog Syntax Tree: null statement (VST_S_NULL) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 140, position 18
+	Scope: $unit_0x4a35e56e::test_basic_rw::srandom
+	Decompile: null statement
+	Source  : class test_basic_rw #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
+	Position:                   ^
+Verilog Syntax Tree: list declaration (VST_VD_LIST) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	Decompile: int seed
+Intermediate File: string (IF_STRING) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	Decompile: srandom
+Verilog Syntax Tree: register declaration (VST_D_REG) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 140, position 18
+	Scope: $unit_0x4a35e56e::test_basic_rw::randomize
+	Decompile: int randomize
+	Source  : class test_basic_rw #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
+	Position:                   ^
+Verilog Syntax Tree: sequential block statement (VST_S_SEQ_BLOCK) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 140, position 18
+	Scope: $unit_0x4a35e56e::test_basic_rw::randomize
+	Source  : class test_basic_rw #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
+	Position:                   ^
+Intermediate File: string (IF_STRING) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	Decompile: randomize
+Verilog Syntax Tree: null statement (VST_S_NULL) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 140, position 18
+	Scope: $unit_0x4a35e56e::test_basic_rw::randomize
+	Decompile: null statement
+	Source  : class test_basic_rw #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
+	Position:                   ^
+Verilog Syntax Tree: parameter declaration (VST_D_PARAMETER) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 140, position 68
+	Scope: $unit_0x4a35e56e::test_basic_rw
+	Decompile: unspecified FIFO_DEPTH
+	Source  : class test_basic_rw #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
+	Position:                                                                     ^
+Verilog Syntax Tree: class declaration (VST_D_CLASS) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 29, position 19
+	Scope: $unit_0x4a35e56e::fifo_test_base
+	Decompile: $unit_0x4a35e56e::fifo_test_base#(FIFO_WIDTH,FIFO_DEPTH)
+	Source  : class fifo_test_base #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8);
+	Position:                    ^
+Verilog Syntax Tree: upscope referral (VST_R_UPSCOPE) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	Scope: $unit_0x4a35e56e
+	Decompile: $unit_0x4a35e56e::fifo_test_base#(FIFO_WIDTH,FIFO_DEPTH)
+Verilog Syntax Tree: list expression (VST_VE_LIST) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	Decompile: unable to decompile type 631
+Verilog Syntax Tree: identifier expression (VST_E_IDENTIFIER) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 141, position 50
+	Scope: $unit_0x4a35e56e::test_basic_rw
+	Decompile: FIFO_DEPTH
+	Source  :     extends fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH);
+	Position:                                                   ^
+Verilog Syntax Tree: identifier expression (VST_E_IDENTIFIER) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 141, position 38
+	Scope: $unit_0x4a35e56e::test_basic_rw
+	Decompile: FIFO_WIDTH
+	Source  :     extends fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH);
+	Position:                                       ^
+Verilog Syntax Tree: number expression (VST_E_NUMBER) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	Decompile: 0
+Verilog Syntax Tree: number expression (VST_E_NUMBER) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	Decompile: 31
+Intermediate File: data block (IF_BLK) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+Verilog Syntax Tree: indexed vector type (VST_T_INDEXED_VEC) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	Decompile: logic signed
+Verilog Syntax Tree: unspecified type (VST_T_UNSPECIFIED) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	Scope: $unit_0x4a35e56e::test_basic_rw
+	Decompile: unspecified
+Verilog Syntax Tree: number expression (VST_E_NUMBER) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 140, position 72
+	Decompile: 8
+	Source  : class test_basic_rw #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
+	Position:                                                                         ^
+Intermediate File: string (IF_STRING) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	Decompile: FIFO_DEPTH
+Verilog Syntax Tree: number expression (VST_E_NUMBER) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 140, position 46
+	Decompile: 64
+	Source  : class test_basic_rw #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
+	Position:                                               ^
+Intermediate File: string (IF_STRING) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	Decompile: FIFO_WIDTH
+Verilog Syntax Tree: upscope referral (VST_R_UPSCOPE) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	Scope: $unit_0x4a35e56e
+	Decompile: $unit_0x4a35e56e::test_basic_rw#(FIFO_WIDTH,FIFO_DEPTH)
+Verilog Syntax Tree: class type (VST_T_CLASS) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 140, position 18
+	Decompile: $unit_0x4a35e56e::test_basic_rw#()
+	Source  : class test_basic_rw #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
+	Position:                   ^
+Intermediate File: string (IF_STRING) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	Decompile: test_basic_rw
+Verilog Syntax Tree: compilation unit declaration (VST_D_COMP_UNIT) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tb_top.sv, line 31, position 6
+	Scope: $unit_0x4a35e56e
+	Decompile: $unit_0x4a35e56e
+	Source  : module fifo_tb_top;
+	Position:       ^
+Verilog Syntax Tree: class declaration (VST_D_CLASS) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 174, position 25
+	Scope: $unit_0x4a35e56e::test_fill_drain_wrap
+	Decompile: $unit_0x4a35e56e::test_fill_drain_wrap#(FIFO_WIDTH,FIFO_DEPTH)
+	Source  : class test_fill_drain_wrap #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
+	Position:                          ^
+Verilog Syntax Tree: class type (VST_T_CLASS) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 140, position 18
+	Scope: $unit_0x4a35e56e::test_basic_rw
+	Decompile: $unit_0x4a35e56e::test_basic_rw#()
+	Source  : class test_basic_rw #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
+	Position:                   ^
+Verilog Syntax Tree: system task enable statement (VST_S_SYSTEM_TASK_ENABLE) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 148, position 15
+	Scope: $unit_0x4a35e56e::test_basic_rw::run
+	Decompile: $display
+	Source  :         $display("\n  --- Part A: Write %0d random values, read all back ---", FIFO_DEPTH);
+	Position:                ^
+Verilog Syntax Tree: parameter declaration (VST_D_PARAMETER) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 140, position 41
+	Scope: $unit_0x4a35e56e::test_basic_rw
+	Decompile: unspecified FIFO_WIDTH
+	Source  : class test_basic_rw #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
+	Position:                                          ^
+Verilog Syntax Tree: class type (VST_T_CLASS) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 141, position 25
+	Scope: $unit_0x4a35e56e::test_basic_rw
+	Decompile: $unit_0x4a35e56e::fifo_test_base#()
+	Source  :     extends fifo_test_base #(FIFO_WIDTH, FIFO_DEPTH);
+	Position:                          ^
+Verilog Syntax Tree: type definition declaration (VST_D_TYPEDEF) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 140, position 18
+	Scope: $unit_0x4a35e56e
+	Decompile: $unit_0x4a35e56e::test_basic_rw#() test_basic_rw
+	Source  : class test_basic_rw #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8)
+	Position:                   ^
+Verilog Syntax Tree: task declaration (VST_D_TASK) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 118, position 19
+	Scope: $unit_0x4a35e56e::fifo_test_base::reset_phase
+	Decompile: reset_phase
+	Source  :     task reset_phase();
+	Position:                    ^
+Verilog Syntax Tree: task declaration (VST_D_TASK) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 61, position 14
+	Scope: $unit_0x4a35e56e::fifo_test_base::read_n
+	Decompile: read_n
+	Source  :     task read_n(int n);
+	Position:               ^
+Verilog Syntax Tree: task declaration (VST_D_TASK) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 124, position 18
+	Scope: $unit_0x4a35e56e::fifo_test_base::check_flag
+	Decompile: check_flag
+	Source  :     task check_flag(string name, logic actual, logic expected);
+	Position:                   ^
+Verilog Syntax Tree: task declaration (VST_D_TASK) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 29, position 19
+	Scope: $unit_0x4a35e56e::fifo_test_base::post_randomize
+	Decompile: post_randomize
+	Source  : class fifo_test_base #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8);
+	Position:                    ^
+Verilog Syntax Tree: task declaration (VST_D_TASK) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 29, position 19
+	Scope: $unit_0x4a35e56e::fifo_test_base::pre_randomize
+	Decompile: pre_randomize
+	Source  : class fifo_test_base #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8);
+	Position:                    ^
+Verilog Syntax Tree: task declaration (VST_D_TASK) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 29, position 19
+	Scope: $unit_0x4a35e56e::fifo_test_base::set_randstate
+	Decompile: set_randstate
+	Source  : class fifo_test_base #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8);
+	Position:                    ^
+Verilog Syntax Tree: task declaration (VST_D_TASK) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 104, position 17
+	Scope: $unit_0x4a35e56e::fifo_test_base::reset_dut
+	Decompile: reset_dut
+	Source  :     task reset_dut();
+	Position:                  ^
+Verilog Syntax Tree: register declaration (VST_D_REG) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 32, position 36
+	Scope: $unit_0x4a35e56e::fifo_test_base
+	Decompile: virtual interface fifo_if vif
+	Source  :     virtual fifo_if #(FIFO_WIDTH) vif;
+	Position:                                     ^
+Verilog Syntax Tree: function declaration (VST_D_FUNCTION) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 29, position 19
+	Scope: $unit_0x4a35e56e::fifo_test_base::randomize
+	Decompile: int randomize
+	Source  : class fifo_test_base #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8);
+	Position:                    ^
+Verilog Syntax Tree: task declaration (VST_D_TASK) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 49, position 15
+	Scope: $unit_0x4a35e56e::fifo_test_base::write_n
+	Decompile: write_n
+	Source  :     task write_n(int n);
+	Position:                ^
+Verilog Syntax Tree: null statement (VST_S_NULL) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 29, position 19
+	Scope: $unit_0x4a35e56e::fifo_test_base::post_randomize
+	Decompile: null statement
+	Source  : class fifo_test_base #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8);
+	Position:                    ^
+Intermediate File: string (IF_STRING) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	Decompile: post_randomize
+Verilog Syntax Tree: task declaration (VST_D_TASK) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 73, position 18
+	Scope: $unit_0x4a35e56e::fifo_test_base::write_data
+	Decompile: write_data
+	Source  :     task write_data(bit [FIFO_WIDTH-1:0] data);
+	Position:                   ^
+Verilog Syntax Tree: null statement (VST_S_NULL) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 29, position 19
+	Scope: $unit_0x4a35e56e::fifo_test_base::pre_randomize
+	Decompile: null statement
+	Source  : class fifo_test_base #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8);
+	Position:                    ^
+Intermediate File: string (IF_STRING) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	Decompile: pre_randomize
+Verilog Syntax Tree: task declaration (VST_D_TASK) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 38, position 21
+	Scope: $unit_0x4a35e56e::fifo_test_base::init
+	Decompile: init
+	Source  :     function void init(virtual fifo_if #(FIFO_WIDTH) vif, fifo_env #(FIFO_WIDTH) env);
+	Position:                      ^
+Verilog Syntax Tree: register declaration (VST_D_REG) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 124, position 60
+	Scope: $unit_0x4a35e56e::fifo_test_base::check_flag
+	Decompile: logic expected
+	Source  :     task check_flag(string name, logic actual, logic expected);
+	Position:                                                             ^
+Verilog Syntax Tree: register declaration (VST_D_REG) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 124, position 44
+	Scope: $unit_0x4a35e56e::fifo_test_base::check_flag
+	Decompile: logic actual
+	Source  :     task check_flag(string name, logic actual, logic expected);
+	Position:                                             ^
+Verilog Syntax Tree: register declaration (VST_D_REG) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 124, position 30
+	Scope: $unit_0x4a35e56e::fifo_test_base::check_flag
+	Decompile: string name
+	Source  :     task check_flag(string name, logic actual, logic expected);
+	Position:                               ^
+Verilog Syntax Tree: sequential block statement (VST_S_SEQ_BLOCK) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 128, position 21
+	Scope: $unit_0x4a35e56e::fifo_test_base::check_flag
+	Source  :         end else begin
+	Position:                      ^
+Verilog Syntax Tree: sequential block statement (VST_S_SEQ_BLOCK) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 125, position 37
+	Scope: $unit_0x4a35e56e::fifo_test_base::check_flag
+	Source  :         if (actual !== expected) begin
+	Position:                                      ^
+Verilog Syntax Tree: case inequality expression (VST_E_CASE_INEQUALITY) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 125, position 21
+	Decompile: (actual !== expected)
+	Source  :         if (actual !== expected) begin
+	Position:                      ^
+Verilog Syntax Tree: sequential block statement (VST_S_SEQ_BLOCK) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 125, position 9
+	Scope: $unit_0x4a35e56e::fifo_test_base::check_flag
+	Source  :         if (actual !== expected) begin
+	Position:          ^
+Verilog Syntax Tree: system task enable statement (VST_S_SYSTEM_TASK_ENABLE) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 129, position 19
+	Scope: $unit_0x4a35e56e::fifo_test_base::check_flag
+	Decompile: $display
+	Source  :             $display("  [FLAG] OK:   %s = %0b @ %0t", name, actual, $time);
+	Position:                    ^
+Verilog Syntax Tree: if statement (VST_S_IF) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 125, position 9
+	Scope: $unit_0x4a35e56e::fifo_test_base::check_flag
+	Decompile: (actual !== expected)
+	Source  :         if (actual !== expected) begin
+	Position:          ^
+Verilog Syntax Tree: plus expression (VST_E_PLUS) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 127, position 31
+	Decompile: (env.scb.fail_count + 1)
+	Source  :             env.scb.fail_count++;
+	Position:                                ^
+Verilog Syntax Tree: identifier expression (VST_E_IDENTIFIER) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 127, position 29
+	Decompile: env.scb.fail_count
+	Source  :             env.scb.fail_count++;
+	Position:                              ^
+Verilog Syntax Tree: number expression (VST_E_NUMBER) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 127, position 31
+	Decompile: 1
+	Source  :             env.scb.fail_count++;
+	Position:                                ^
+Verilog Syntax Tree: system task enable statement (VST_S_SYSTEM_TASK_ENABLE) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 126, position 19
+	Scope: $unit_0x4a35e56e::fifo_test_base::check_flag
+	Decompile: $display
+	Source  :             $display("  [FLAG] FAIL: %s = %0b, expected %0b @ %0t", name, actual, expected, $time);
+	Position:                    ^
+Verilog Syntax Tree: system function call expression (VST_E_SYSTEM_FUNCTION_CALL) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 129, position 72
+	Scope: $unit_0x4a35e56e::fifo_test_base::check_flag
+	Decompile: $time
+	Source  :             $display("  [FLAG] OK:   %s = %0b @ %0t", name, actual, $time);
+	Position:                                                                         ^
+Verilog Syntax Tree: blocking assignment statement (VST_S_BLOCKING_ASSIGNMENT) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 127, position 31
+	Scope: $unit_0x4a35e56e::fifo_test_base::check_flag
+	Decompile: (env.scb.fail_count + 1)
+	Source  :             env.scb.fail_count++;
+	Position:                                ^
+Verilog Syntax Tree: identifier expression (VST_E_IDENTIFIER) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 125, position 30
+	Scope: $unit_0x4a35e56e::fifo_test_base::check_flag
+	Decompile: expected
+	Source  :         if (actual !== expected) begin
+	Position:                               ^
+Verilog Syntax Tree: identifier expression (VST_E_IDENTIFIER) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 125, position 17
+	Scope: $unit_0x4a35e56e::fifo_test_base::check_flag
+	Decompile: actual
+	Source  :         if (actual !== expected) begin
+	Position:                  ^
+Verilog Syntax Tree: logic type (VST_T_LOGIC) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	Decompile: logic
+Intermediate File: string (IF_STRING) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	Decompile: expected
+Verilog Syntax Tree: list declaration (VST_VD_LIST) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	Decompile: logic expected
+Intermediate File: string (IF_STRING) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	Decompile: actual
+Verilog Syntax Tree: list declaration (VST_VD_LIST) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	Decompile: logic actual
+Verilog Syntax Tree: string type (VST_T_STRING) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	Scope: $unit_0x4a35e56e::fifo_test_base::check_flag
+	Decompile: string
+Intermediate File: string (IF_STRING) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	Decompile: name
+Verilog Syntax Tree: list declaration (VST_VD_LIST) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	Decompile: string name
+Intermediate File: string (IF_STRING) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	Decompile: check_flag
+Verilog Syntax Tree: parameter declaration (VST_D_PARAMETER) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 29, position 69
+	Scope: $unit_0x4a35e56e::fifo_test_base
+	Decompile: unspecified FIFO_DEPTH
+	Source  : class fifo_test_base #(parameter FIFO_WIDTH = 64, parameter FIFO_DEPTH = 8);
+	Position:                                                                      ^
+Verilog Syntax Tree: sequential block statement (VST_S_SEQ_BLOCK) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 119, position 16
+	Scope: $unit_0x4a35e56e::fifo_test_base::reset_phase
+	Source  :         reset_dut();
+	Position:                 ^
+Verilog Syntax Tree: task enable statement (VST_S_TASK_ENABLE) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 120, position 16
+	Scope: $unit_0x4a35e56e::fifo_test_base::reset_phase
+	Decompile: unable to decompile type 651
+	Source  :         env.reset();
+	Position:                 ^
+Verilog Syntax Tree: task enable statement (VST_S_TASK_ENABLE) in compilation_unit worklib.\$unit_0x4a35e56e :compilation_unit (VST)
+	File: /scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/fifo_tests.sv, line 119, position 16
+	Scope: $unit_0x4a35e56e::fifo_test_base::reset_phase
+	Decompile: unable to decompile type 651
+	Source  :         reset_dut();
+	Position:                 ^
+csi-xmvlog - CSI: investigation output 1st 100 entries took 0.011 secs, send this file to Cadence Support

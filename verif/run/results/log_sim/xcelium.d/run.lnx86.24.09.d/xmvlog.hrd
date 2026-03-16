@@ -1,0 +1,11 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
+-DEFINE
+DUMP_ON
+-DEFINE
+CADENCE
+-INCDIR
+/scratch/users/sdash/workspace_comp8/Asynchronous-FIFO/verif/tb_simple/
+-sv

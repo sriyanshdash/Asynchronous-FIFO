@@ -1,0 +1,29 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
++timescale+1ns/1ps
++TEST_NAME=all
++define+DUMP_ON
++define+CADENCE
++nowarn_AAMNSD
++access+rw
++sv
+-NOWARN
+_AAMNSD
+-ACCESS
++rw
+-DISABLE_SEM2009
+-no_analogsolver
+-MESSAGES
+-dms_perf
+-XLMODE
+./xcelium.d/run.lnx86.24.09.d
+-RUNMODE
+-CDSLIB
+./xcelium.d/run.lnx86.24.09.d/cds.lib
+-HDLVAR
+./xcelium.d/run.lnx86.24.09.d/hdl.var
+-WORK
+worklib
+-HASXLMODE
